@@ -3,6 +3,7 @@ layout: default
 ---
 
 # Bienvenue
+
 Ce site contient les informations concernant le Cours Avancé [Formalisation Mathématique](https://www.math.ens.psl.eu/formations/ca-formalisation-mathematique/) pour le M1 du Département de mathématiques et applications de l'ENS-Paris, qui a lieu au deuxième semestre 2025--26.
 
 Le cours est assuré par [Filippo A. E. Nuccio](https://perso.univ-st-etienne.fr/nf51454h/). Le matériel est en anglais, le cours aura (probablement) lieu en français.
@@ -10,16 +11,16 @@ Le cours est assuré par [Filippo A. E. Nuccio](https://perso.univ-st-etienne.fr
 Chaque cours vient avec un fichier `.md` (exporté en `.pdf` aussi) que vous trouvez plus bas et qui contient le matériel discuté, ainsi qu'avec un fichier `.lean` à utiliser pendant le cours. Les solutions sont rajoutées le lendemain du cours, en général.
 
 # Agenda
-Les cours ont lieu de 13h30 à 16h30 en salle... selon le calendrier suivant:
+Les cours ont lieu de 13h30 à 16h30  selon le calendrier suivant:
 
 | Date      | Cours         | Fichiers annexes | Notes
 |-----------|---------------|---------------|---------------
 | 3 février | Tactiques et Types | |
-| 5 février | Types et Ensembles | |
+| 5 février | Types (2) | |
 | 10 février | Algèbre | |
 | 17 février | Topologie | |
 | 19 février | Analyse | |
-| 10 mars | *à décider | |
+| 10 mars | *à décider* | |
 | 12 mars | **examen** | | Examen écrit de 2h
 | 24 mars | séminaire étudiants | |
 | 31 mars | séminaire étudiants | |

@@ -9,9 +9,7 @@ example (n : ℕ) (hn : n ≤ 3) : n ≤ 5 := by
   use hn
   linarith
 
-
 -- `⌘`
-
 
 /- # exact, intro, apply, rfl-/
 
@@ -20,16 +18,18 @@ example (n : ℕ) (hn : n ≤ 3) : n ≤ 5 := by
 example (hP : P) : P := by
   exact hP
 
--- Use of the `intro` tactic
--- **ToDo**
-example : P → P := by
-  intro hP
-  exact hP
-
 -- Use of the `apply` tactic
 -- **ToDo**
 example (h : P → Q) (hP : P) : Q := by
   apply h
+  exact hP
+
+-- `⌘`
+
+-- Use of the `intro` tactic
+-- **ToDo**
+example : P → P := by
+  intro hP
   exact hP
 
 -- Use `\.` to write `·`
@@ -73,7 +73,6 @@ example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x :=
 example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x := by
   rw [h] at hP
   exact hP
-
 
 -- `⌘`
 
@@ -143,11 +142,16 @@ example : R ∨ ¬ R := by
 #check (Real.sin : ℝ → ℝ)
 
 -- **ToDo**
-example : (1 : ℕ) = (1 : ℝ) := rfl
+example : (1 : ℕ) = (1 : ℝ) := by
+  rfl
+
 -- **ToDo**
-example : 1 = (1 : ℚ) := rfl
+example : 1 = (1 : ℚ) := by
+  rfl
+
 -- **ToDo**
-example : (1 : ℚ) = (1 : ℚ[X]):= rfl
+example : (1 : ℚ) = (1 : ℚ[X]):= by
+  rfl
 
 -- `⌘`
 
@@ -160,7 +164,6 @@ example : (1 : ℚ) = (1 : ℚ[X]):= rfl
 #check true
 #check false
 #check Bool
-
 
 -- `⌘`
 

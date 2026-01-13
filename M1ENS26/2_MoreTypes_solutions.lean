@@ -1,15 +1,27 @@
 import Mathlib.Tactic
+--
+-- section Class
 
-section Class
+variable (P Q R S : Prop)
 -- # More on Types
+
+section DependentTypes
 
 -- ## The hierarchy
 #check ℕ
 #check Type
 #check Prop
 
+-- `⌘`
 
 -- ## Dependent types
+
+#check λ n : ℕ ↦ 3 * n
+#check fun n : ℕ ↦ 3 * n
+#check fun x : ℝ ↦ x + Complex.I
+#check (fun x : ℝ ↦ x + Complex.I) (Real.pi)
+
+-- `⌘`
 
 #check ∀ n : ℕ, Vector ℝ n
 #check Π n : ℕ, Vector ℝ n
@@ -22,7 +34,7 @@ section Class
 
 #check ℕ → ℝ
 #check Type 3 → Type 12
-#check Type 3 → Prop -- Here, `I : (Type 3 : Type 4) → (Prop : Type 0)`, with `I α = Prop` for all `α`
+#check Type 3 → Prop -- Here `I : (Type 3 : Type 4) → (Prop : Type 0)` with `I α = Prop` for all `α`
 #check Type 31 → False -- Here, `I : Type 31 → Prop`, with `I α = False` for all `α`
 
 universe u v
@@ -30,44 +42,47 @@ variable {A : Sort u} (I : A → Sort v)
 #check (a : A) → I a
 #check Σ' (a : A), I a--(a : A), I a
 #check (a : A) × I a--(a : A), I a
+#check (a : ℕ) ×' ((fun n ↦ ∃ m : ℕ, n < m) a)
 
 variable {A' : Type u} (J : A' → Type v)
 #check (a : A') × J a
 
+-- `⌘`
 
--- Exercice
--- What is the type of `¬`?
--- It is `Prop → Prop`:
-#check Not
+/- # `True`, `False`, negation, contradiction -/
 
-end Class
+-- **ToDo**
+example : True := by
+  exact trivial
 
-section Exercice
--- Exercice
-/- Consider the function `F` sending `n : ℕ` to the statement\
-`0 ≠ n ∧ (∀ α : Type 2, ∃ v w : Vector α n), v ≠ w`)
-1. How do you expect `F 2` to look like?
-2. What is the type of `fun n ↦ ((fun α : Type 2) ↦ ∃ v : Vector α n, v ≠ 0`?
-3. What is the type of `fun n ↦ (∀ α : Type 2, ∃ v : Vector α n, v ≠ 0)`? To which universe level
-  does this type belong to?
-4. What is the type of `F 2`, and to which universe level does this type belong?
-5. Is `F 2` true?
-6. What is the type of `F` and to which universe level does this type belong?
--/
+-- Use of the `exfalso` tactic
+-- **ToDo**
+example : False → P := by
+  intro h
+  exfalso
+  exact h
 
--- *1.* `F 2` should be a pair of a proof that `0 ≠ 2` and of the existence of a non-zero
--- 2-dimensional vector for every `v`.
--- *2.* The type of `fun (n : ℕ) ↦ (fun (α : Type 2) ↦ ∃ (v w : Vector α n), v ≠ w)` is `ℕ → Type 2 → Prop`
--- *3.* The type of `fun (n : ℕ) ↦ (∀ α : Type 2, ∃ (v w : Vector α n), v ≠ w)` is `ℕ → Prop`, which
--- is of universe level `Type 0` since both `ℕ` and `Prop` are terms in `Type 0`.
--- *4.* The type of `F 2` is a `Prop`, which is of universe level `Type 0`.
--- *5.* No, it is false: among all types in `Type 2` there is the empty type, for which it is
--- impossible to find two different 2-dimensional vectors.
--- *6.* `F` is of type `ℕ ↦ Prop`, of level `Type 0`.
+-- type `¬` by typing `\not`.
+-- **ToDo**
+example : P → Q → P → ¬ Q → ¬ P := by
+  intro hp hq hp' h_neq abs
+  apply h_neq
+  exact hq
+
+-- Use of the `by_contra` tactic
+-- **ToDo**
+example : (¬Q → ¬P) → P → Q := by
+  intro h1 hP
+  by_contra h2
+  have h3 := h1 h2
+  exact h3 hP
+
+-- `⌘`
+
+end DependentTypes
 
 
--- # §3 : Inductive types
-
+-- # : Inductive types
 section InductiveTypes
 
 inductive NiceType : Type
@@ -79,6 +94,44 @@ open NiceType
 
 #check NiceType
 #check f (g 37 Tom Tom)
+#check NiceType.rec
+
+noncomputable
+def F : NiceType → ℝ := by
+  let G := @NiceType.rec (motive := fun _ ↦ ℝ)
+  -- simp only at G
+  exact G Real.pi (Real.exp 1) (fun _ x ↦ x) (fun n _ _ x y ↦ x * y)
+
+def Cat : NiceType := Tom
+
+def Hunt : NiceType := g 2 Cat Jerry
+
+-- `⌘`
+
+-- ## Another example
+
+inductive ENS_Or (p q : Prop) : Prop
+| left : p → ENS_Or p q
+| right : q → ENS_Or p q
+
+#print ENS_Or
+
+example (n : ℕ) : ENS_Or (n = 0) (∃ m, n = Nat.succ m) := by
+  rcases n with _ | a -- this is a case-splitting on the way an `ENS_succ` can be constructed
+  · apply ENS_Or.left
+    rfl
+  · apply ENS_Or.right
+    use a
+
+-- `⌘`
+
+#print True
+#print False
+#print Bool
+#print Nat
+#print And
+#print Iff -- printed ↔
+#print Equiv
 
 inductive ENS_Nat
 | ENS_zero : ENS_Nat
@@ -93,11 +146,83 @@ def JustOne_fun : ℕ → ENS_Nat
   | 0 => ENS_zero
   | Nat.succ m => ENS_succ (JustOne_fun m)
 
-
 --This we leave as an exercise...
 def JustOne_inv : ENS_Nat → ℕ
   | ENS_zero => 0
   | ENS_succ a => Nat.succ (JustOne_inv a)
+
+-- The rest of the equivalence is left as an *exercise*.
+
+end InductiveTypes
+
+
+-- # Exercises
+
+-- Exercise
+-- What is the type of `¬`?
+-- It is `Prop → Prop`:
+#check Not
+
+
+section Exercise
+
+-- Exercise
+/- Consider the function `F` sending `n : ℕ` to the statement\
+`0 ≠ n ∧ (∀ α : Type 2, ∃ v w : Vector α n), v ≠ w`)
+1. How do you expect `F 2` to look like?
+2. What is the type of `fun n ↦ ((fun α : Type 2) ↦ ∃ v : Vector α n, v ≠ 0`?
+3. What is the type of `fun n ↦ (∀ α : Type 2, ∃ v : Vector α n, v ≠ 0)`? To which universe level
+  does this type belong to?
+4. What is the type of `F 2`, and to which universe level does this type belong?
+5. Is `F 2` true?
+6. What is the type of `F` and to which universe level does this type belong?
+-/
+
+-- *1.* `F 2` should be a pair of a proof that `0 ≠ 2` and of the existence of a non-zero
+-- 2-dimensional vector for every `v`.
+-- *2.* The type of `fun (n : ℕ) ↦ (fun (α : Type 2) ↦ ∃ (v w : Vector α n), v ≠ w)` is
+-- `ℕ → Type 2 → Prop`
+-- *3.* The type of `fun (n : ℕ) ↦ (∀ α : Type 2, ∃ (v w : Vector α n), v ≠ w)` is `ℕ → Prop`, which
+-- is of universe level `Type 0` since both `ℕ` and `Prop` are terms in `Type 0`.
+-- *4.* The type of `F 2` is a `Prop`, which is of universe level `Type 0`.
+-- *5.* No, it is false: among all types in `Type 2` there is the empty type, for which it is
+-- impossible to find two different 2-dimensional vectors.
+-- *6.* `F` is of type `ℕ ↦ Prop`, of level `Type 0`.
+
+-- **Exercise**
+example : True → True := by
+  intro h
+  exact h
+
+-- **Exercise**
+example : (P → False) → P → Q := by
+  intro h hP
+  exfalso
+  apply h
+  exact hP
+
+-- **Exercise**
+example : P → ¬ P → False := by
+  intro hP hneP
+  apply hneP
+  exact hP
+
+-- **Exercise**
+example : (P → ¬ Q) → (Q → ¬ P) := by
+  intro t_to_f h_neQ
+  by_contra h
+  have H := t_to_f h
+  apply H
+  exact h_neQ
+
+-- **Exercise**
+example (h : ¬ (2 = 2)) : P → Q := by
+  by_contra
+  -- exfalso
+  apply h
+  rfl
+
+open Function
 
 def JustOne_Left : LeftInverse JustOne_inv JustOne_fun := by
   intro n
@@ -123,31 +248,6 @@ def JustOne : ℕ ≃ ENS_Nat where
   right_inv := JustOne_Right
 
 
-inductive ENS_Or (p q : Prop) : Prop
-| left : p → ENS_Or p q
-| right : q → ENS_Or p q
-
-#print ENS_Or
-
-example (n : ENS_Nat) : ENS_Or (n = ENS_zero) (∃ m, n = ENS_succ m) := by
-  cases' n with m -- this is a case-splitting on the way an `ENS_succ` can be constructed
-  · apply ENS_Or.left
-    rfl
-  · apply ENS_Or.right
-    cases' m with d
-    · use ENS_zero
-    · use ENS_succ d
-
-
-
-
-/- **§ Some exercises** -/
-
-
-
--- **1** : Fill in the `sorry` in `JustOne_inv` and in `JustOne_Right`.
--- *Solutions* are above
-
 -- **2** The successor is not surjective, but you can't rely on the library this time.
 example : ¬ Surjective ENS_succ := by
   intro habs
@@ -158,7 +258,6 @@ example : ¬ Surjective ENS_succ := by
 inductive Politics
   | Right : Politics
   | Left : Politics
-
 
 -- leave this line as it is
 open Politics
@@ -175,82 +274,6 @@ example (a : Politics) : a ≠ Right → a = Left := by
   · exfalso
     trivial
   · rfl
-
-end InductiveTypes
-
--- # §4 : Inductive families
-
-section InductiveFamilies
-
-inductive NiceProp : Prop
-  | Tom : NiceProp
-  | Jerry : NiceProp
-  | f : NiceProp → NiceProp
-  | g : ℕ → NiceProp → NiceProp → NiceProp
-
-#check NiceProp
-
-
-inductive NiceFamily : ℕ → Prop
-  | Tom : NiceFamily 0
-  | Jerry : NiceFamily 1
-  | F : ∀n : ℕ, NiceFamily n → NiceFamily (n + 37)
-  | G (n : ℕ) : ℕ → NiceFamily n → NiceFamily (n + 1) → NiceFamily (n + 3)
-
-#check NiceFamily
-#check NiceFamily 2
-#check NiceFamily 21
-#print NiceFamily
-
--- # §4 : Inductive predicates
-
-inductive IsEven : ℕ → Prop
-  | zero_even : IsEven 0
-  | succ_succ (n : ℕ) : IsEven n → IsEven (n+2)
-
-
-example : IsEven 4 := by
-  apply IsEven.succ_succ
-  apply IsEven.succ_succ
-  -- *Alternative proof* repeat apply IsEven.succ_succ
-  exact IsEven.zero_even
-
-example : ¬ IsEven 5 := by
-  intro h
-  cases h with
-  | succ_succ n hn =>
-    cases hn with
-    | succ_succ m hm =>
-      cases hm
-
-lemma not_isEven_succ_succ (n : ℕ) : ¬ IsEven n ↔ ¬ IsEven (n + 2) := by
-  refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
-  · intro hf
-    cases hf
-    trivial
-  · intro hf
-    have := IsEven.succ_succ n hf
-    trivial
-
-lemma not_IsEven_succ : ∀ n : ℕ, IsEven n ↔ ¬ IsEven (n + 1) := by
-  intro n
-  refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
-  · rcases h with _ | ⟨n, hn⟩ -- what are the new cases? how many? why?
-    · intro hf
-      cases hf
-    · intro hf
-      rcases hf with _ | ⟨-, H⟩
-      exact (not_IsEven_succ n).mp hn H
-  · induction' n with d hd
-    · exact IsEven.zero_even
-    · rw [← not_isEven_succ_succ] at h
-      replace hd := hd.mt
-      simp only [Decidable.not_not] at hd
-      apply hd
-      exact h
-
-
-
 
 /- **§ Some exercises** -/
 

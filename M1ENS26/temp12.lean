@@ -2,66 +2,7 @@ import Mathlib.Tactic
 
 variable (P Q R S : Prop)
 
-/- # `True`, `False`, negation, contradiction -/
 
--- **ToDo**
-example : True := by
-  exact trivial
-
--- **Exercise**
-example : True → True := by
-  intro h
-  exact h
-
--- Use of the `exfalso` tactic
--- **ToDo**
-example : False → P := by
-  intro h
-  exfalso
-  exact h
-
--- **Exercise**
-example : (P → False) → P → Q := by
-  intro h hP
-  exfalso
-  apply h
-  exact hP
-
--- type `¬` by typing `\not`.
--- **ToDo**
-example : P → Q → P → ¬ Q → ¬ P := by
-  intro hp hq hp' h_neq abs
-  apply h_neq
-  exact hq
-
--- **Exercise**
-example : P → ¬ P → False := by
-  intro hP hneP
-  apply hneP
-  exact hP
-
--- Use of the `by_contra` tactic
--- **ToDo**
-example : (¬Q → ¬P) → P → Q := by
-  intro h1 hP
-  by_contra h2
-  have h3 := h1 h2
-  exact h3 hP
-
--- **Exercise**
-example : (P → ¬ Q) → (Q → ¬ P) := by
-  intro t_to_f h_neQ
-  by_contra h
-  have H := t_to_f h
-  apply H
-  exact h_neQ
-
--- **Exercise**
-example (h : ¬ (2 = 2)) : P → Q := by
-  by_contra
-  -- exfalso
-  apply h
-  rfl
 
 
 -- `⌘`

@@ -2,18 +2,7 @@
 
 [![Docs: Website](https://img.shields.io/badge/Docs-Website-blue.svg?logo=readthedocs&logoColor=white)](https://faenuccio-teaching.github.io/ENS_26/docs/)
 
-## Doc
-The documentation for the Mathlib version (and other results we might prove during the class) can be found
-at the adress [https://faenuccio-teaching.github.io/ENS_26/docs/](https://faenuccio-teaching.github.io/ENS_26/docs/).
-
-## Install Lean 4
-
-Ensure that you have a functioning Lean 4 installation. If you do not, please follow
-the [Lean installation guide](https://leanprover-community.github.io/get_started.html).
-
-## New
-
-## Lean and GitHub Prerequisites
+## Prérequis Lean et GitHub
 
 Avant le début du cours (le mardi 3 février 2026), assurez-vous de:
 * avoir accès à une connexion internet lorsque à l'ENS, idéalement via Eduroam;

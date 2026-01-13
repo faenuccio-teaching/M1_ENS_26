@@ -24,12 +24,14 @@ This is typically done by
 
 This is often painful: to simplify our life, or to build more convoluted implications, we use *tactics*.
 
-+++ `intro`, `exact`, `apply` and `rfl`
-* Given an implication `P → Q`, the tactic `intro hp` introduces a term `hp : P`.
++++ `exact`, `apply`, `intro` and `rfl`
+* Given a term `hq : Q` and a goal `⊢ Q`, the tactic `exact hq` closes the goal, instructing Lean to use `hq` as the sought-for term in `Q`.
 
-* On the other hand, given a term `hq : Q` and a goal `⊢ Q`, the tactic `exact hq` closes the goal, instructing Lean to use `hq` as the sought-for term in `Q`.
 * `apply` is the crucial swiss-knife for *backwards reasoning*: in a situation like
 
+`⌘`
+
+* Given an implication `P → Q`, the tactic `intro hp` introduces a term `hp : P`.
     ```
     hpq : P → Q
     ⊢ Q
@@ -66,6 +68,9 @@ For both logical connectors, there are two use-cases: we might want to *prove* a
 ### Or
 * `right` and `left` transform a goal `p ∨ q` in `p` and in `q`, respectively.
 * `cases p ∨ q` creates two goals: one assuming `p` and the other assuming `q`.
+
+`⌘`
+
 +++
 
 +++ `by_cases`
@@ -93,8 +98,6 @@ Given some term `t` we can ask Lean what its type is with the command
 #check t
 ```
 
-`⌘`
-
 +++ Sets = Types?
 **No!** Of course, you can bring over some intuition from basic set-theory, but **every term has a unique type**.
 
@@ -103,14 +106,17 @@ So,
     t : T ∧ t : S
 
 is certainly *false*, unless `T = S`. In particular, `1 : ℕ` and `1 : ℤ` shows that the two `1`'s above are **different**.
+
+`⌘`
+
 +++
 
 ### `Prop`
 
-There is a class of particular types, called *propositions*. This class is denoted `Prop`.
+There is one kind of particular types, called *propositions*. This class is denoted `Prop`.
 
 
-Types in the class `Prop` represent propositions (that can be either true or false). So, `(2 < 3) : Prop` and `(37 < 1) : Prop` are two *types* in this class, as is `(A finite group of order 11 is cyclic)`.
+Types of kind `Prop` represent propositions (that can be either true or false). So, `(2 < 3) : Prop` and `(37 < 1) : Prop` are two *types* in this class, as is `(A finite group of order 11 is cyclic)`.
 
 +++ `True`,  `False` and `Bool`
 Fundamentally, `Prop` contains only two types:
@@ -127,4 +133,3 @@ Fundamentally, `Prop` contains only two types:
 #### Key points to keep in mind
 * If `P : Prop` then either `P` has not term at all ("`P` is false"), or `P` has a unique term `hp` (`hp` is "a witness that `P` is true"; or a **proof** of `P`).
 * As well `ℕ` as `3 < -1` as `ℝℙ²` and `(a+b)² = a² + 2ab + b²` are types, although of different flavour.
-s
