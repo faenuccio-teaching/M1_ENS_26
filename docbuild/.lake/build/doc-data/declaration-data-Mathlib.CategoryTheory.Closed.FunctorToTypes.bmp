@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Mathlib.CategoryTheory.Monoidal.Closed.FunctorToTypes"],"instances":[],"name":"Mathlib.CategoryTheory.Closed.FunctorToTypes"}

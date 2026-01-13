@@ -1,0 +1,715 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.Analysis.Distribution.FourierSchwartz</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="Mathlib.Analysis.Distribution.FourierSchwartz";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">Analysis</span>.<span class="name">Distribution</span>.<span class="name">FourierSchwartz</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../.././Init.html">Init</a></li><li><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html">Mathlib.Analysis.Distribution.SchwartzSpace</a></li><li><a href="../../.././Mathlib/Analysis/Fourier/FourierTransformDeriv.html">Mathlib.Analysis.Fourier.FourierTransformDeriv</a></li><li><a href="../../.././Mathlib/Analysis/Fourier/Inversion.html">Mathlib.Analysis.Fourier.Inversion</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.Analysis.Distribution.FourierSchwartz" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourierTransformCLM"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLM</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.instFourierTransform"><span class="name">SchwartzMap</span>.<span class="name">instFourierTransform</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourier_coe"><span class="name">SchwartzMap</span>.<span class="name">fourier_coe</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.instFourierModule"><span class="name">SchwartzMap</span>.<span class="name">instFourierModule</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourierTransformCLM_apply"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLM_apply</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.instFourierTransformInv"><span class="name">SchwartzMap</span>.<span class="name">instFourierTransformInv</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourierInv_coe"><span class="name">SchwartzMap</span>.<span class="name">fourierInv_coe</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.instFourierInvModule"><span class="name">SchwartzMap</span>.<span class="name">instFourierInvModule</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.instFourierPair"><span class="name">SchwartzMap</span>.<span class="name">instFourierPair</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.instFourierInvPair"><span class="name">SchwartzMap</span>.<span class="name">instFourierInvPair</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourier_inversion"><span class="name">SchwartzMap</span>.<span class="name">fourier_inversion</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourier_inversion_inv"><span class="name">SchwartzMap</span>.<span class="name">fourier_inversion_inv</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourierTransformCLE"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLE</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourierTransformCLE_apply"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLE_apply</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.fourierTransformCLE_symm_apply"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLE_symm_apply</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.integral_bilin_fourier_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_bilin_fourier_eq</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.integral_bilin_fourierIntegral_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_bilin_fourierIntegral_eq</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.integral_sesq_fourier_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_sesq_fourier_eq</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.integral_sesq_fourierIntegral_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_sesq_fourierIntegral_eq</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.integral_sesq_fourier_fourier"><span class="name">SchwartzMap</span>.<span class="name">integral_sesq_fourier_fourier</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.integral_inner_fourier_fourier"><span class="name">SchwartzMap</span>.<span class="name">integral_inner_fourier_fourier</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.integral_norm_sq_fourier"><span class="name">SchwartzMap</span>.<span class="name">integral_norm_sq_fourier</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.inner_fourier_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">inner_fourier_toL2_eq</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.inner_fourierTransformCLM_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">inner_fourierTransformCLM_toL2_eq</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.norm_fourier_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">norm_fourier_toL2_eq</span></a></div><div class="nav_link"><a class="break_within" href="#SchwartzMap.norm_fourierTransformCLM_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">norm_fourierTransformCLM_toL2_eq</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Fourier-transform-on-Schwartz-functions">Fourier transform on Schwartz functions <a class="hover-link" href="#Fourier-transform-on-Schwartz-functions">#</a></h1><p>This file constructs the Fourier transform as a continuous linear map acting on Schwartz
+functions, in <code><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLM">fourierTransformCLM</a></code>. It is also given as a continuous linear equiv, in
+<code><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLE">fourierTransformCLE</a></code>.</p></div><div class="decl" id="SchwartzMap.fourierTransformCLM"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L39-L86">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLM"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLM</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/RCLike/Basic.html#RCLike">RCLike</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><span class="fn">𝕜</span><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span></div></div><p>The Fourier transform on a real inner product space, as a continuous linear map on the
+Schwartz space.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLM">SchwartzMap.fourierTransformCLM</a> <span class="fn">𝕜</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.mkCLM">SchwartzMap.mkCLM</a> <span class="fn">(fun (<span class="fn">x</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>) =&gt; <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">⇑<span class="fn">x</span></span></span>)</span> <span class="fn">⋯</span> <span class="fn">⋯</span> <span class="fn">⋯</span> <span class="fn">⋯</span></span></li></ul></details><details id="instances-for-list-SchwartzMap.fourierTransformCLM" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="SchwartzMap.instFourierTransform"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L88-L89">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierTransform"><span class="name">SchwartzMap</span>.<span class="name">instFourierTransform</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform">FourierTransform</a> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierTransform">SchwartzMap.instFourierTransform</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.mk">{</a> <span class="fn">fourier</span> := <span class="fn">fun (<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>) =&gt; <span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLM">SchwartzMap.fourierTransformCLM</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a>)</span> <span class="fn">f</span></span></span> <a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.mk">}</a></li></ul></details></div></div><div class="decl" id="SchwartzMap.fourier_coe"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L91-L91">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourier_coe"><span class="name">SchwartzMap</span>.<span class="name">fourier_coe</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">⇑<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">⇑<span class="fn">f</span></span></span></div></div></div></div><div class="decl" id="SchwartzMap.instFourierModule"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L93-L95">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierModule"><span class="name">SchwartzMap</span>.<span class="name">instFourierModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/RCLike/Basic.html#RCLike">RCLike</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierModule">FourierModule</a> <span class="fn">𝕜</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierModule">SchwartzMap.instFourierModule</a> <span class="fn">𝕜</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierModule.mk">{</a> <span class="fn">toFourierTransform</span> := <a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierTransform">SchwartzMap.instFourierTransform</a>, <span class="fn">fourier_add</span> := <span class="fn">⋯</span>, <span class="fn">fourier_smul</span> := <span class="fn">⋯</span> <a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierModule.mk">}</a></li></ul></details></div></div><div class="decl" id="SchwartzMap.fourierTransformCLM_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L97-L99">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLM_apply"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLM_apply</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/RCLike/Basic.html#RCLike">RCLike</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLM">fourierTransformCLM</a> <span class="fn">𝕜</span>)</span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="SchwartzMap.instFourierTransformInv"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L101-L103">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierTransformInv"><span class="name">SchwartzMap</span>.<span class="name">instFourierTransformInv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv">FourierTransformInv</a> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation">One or more equations did not get rendered due to their size.</li></ul></details></div></div><div class="decl" id="SchwartzMap.fourierInv_coe"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L105-L108">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierInv_coe"><span class="name">SchwartzMap</span>.<span class="name">fourierInv_coe</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">⇑<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv.fourierInv">FourierTransformInv.fourierInv</a> <span class="fn">f</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv.fourierInv">FourierTransformInv.fourierInv</a> <span class="fn">⇑<span class="fn">f</span></span></span></div></div></div></div><div class="decl" id="SchwartzMap.instFourierInvModule"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L110-L113">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierInvModule"><span class="name">SchwartzMap</span>.<span class="name">instFourierInvModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/RCLike/Basic.html#RCLike">RCLike</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierInvModule">FourierInvModule</a> <span class="fn">𝕜</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierInvModule">SchwartzMap.instFourierInvModule</a> <span class="fn">𝕜</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierInvModule.mk">{</a> <span class="fn">toFourierTransformInv</span> := <a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierTransformInv">SchwartzMap.instFourierTransformInv</a>, <span class="fn">fourierInv_add</span> := <span class="fn">⋯</span>, <span class="fn">fourierInv_smul</span> := <span class="fn">⋯</span> <a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierInvModule.mk">}</a></li></ul></details></div></div><div class="decl" id="SchwartzMap.instFourierPair"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L117-L122">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierPair"><span class="name">SchwartzMap</span>.<span class="name">instFourierPair</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierPair">FourierPair</a> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span></span></div></div></div></div><div class="decl" id="SchwartzMap.instFourierInvPair"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L124-L129">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.instFourierInvPair"><span class="name">SchwartzMap</span>.<span class="name">instFourierInvPair</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierInvPair">FourierInvPair</a> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span></span></div></div></div></div><div class="decl" id="SchwartzMap.fourier_inversion"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L131-L132">source</a></div><div class="attributes">@[deprecated FourierPair.fourierInv_fourier_eq (since := &quot;2025-11-13&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourier_inversion"><span class="name">SchwartzMap</span>.<span class="name">fourier_inversion</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform">FourierTransform</a> <span class="fn">E</span> <span class="fn">F</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝¹</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv">FourierTransformInv</a> <span class="fn">F</span> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">self</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierPair">FourierPair</a> <span class="fn">E</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">E</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv.fourierInv">FourierTransformInv.fourierInv</a> <span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">f</span></div></div><p><strong>Alias</strong> of <code><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierPair.fourierInv_fourier_eq">FourierPair.fourierInv_fourier_eq</a></code>.</p></div></div><div class="decl" id="SchwartzMap.fourier_inversion_inv"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L134-L135">source</a></div><div class="attributes">@[deprecated FourierInvPair.fourier_fourierInv_eq (since := &quot;2025-11-13&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourier_inversion_inv"><span class="name">SchwartzMap</span>.<span class="name">fourier_inversion_inv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform">FourierTransform</a> <span class="fn">F</span> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝¹</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv">FourierTransformInv</a> <span class="fn">E</span> <span class="fn">F</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">self</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierInvPair">FourierInvPair</a> <span class="fn">E</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">E</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv.fourierInv">FourierTransformInv.fourierInv</a> <span class="fn">f</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">f</span></div></div><p><strong>Alias</strong> of <code><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierInvPair.fourier_fourierInv_eq">FourierInvPair.fourier_fourierInv_eq</a></code>.</p></div></div><div class="decl" id="SchwartzMap.fourierTransformCLE"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L137-L142">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLE"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLE</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/RCLike/Basic.html#RCLike">RCLike</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span> <a href="../../.././Mathlib/Topology/Algebra/Module/Equiv.html#ContinuousLinearEquiv">≃L[</a><span class="fn">𝕜</span><a href="../../.././Mathlib/Topology/Algebra/Module/Equiv.html#ContinuousLinearEquiv">]</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span></div></div><p>The Fourier transform on a real inner product space, as a continuous linear equiv on the
+Schwartz space.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLE">SchwartzMap.fourierTransformCLE</a> <span class="fn">𝕜</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <a href="../../.././Mathlib/Topology/Algebra/Module/Equiv.html#ContinuousLinearEquiv.mk">{</a> <span class="fn">toLinearEquiv</span> := <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourierEquiv">FourierTransform.fourierEquiv</a> <span class="fn">𝕜</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span> <span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span>)</span></span>, <span class="fn">continuous_toFun</span> := <span class="fn">⋯</span>,
+    <span class="fn">continuous_invFun</span> := <span class="fn">⋯</span> <a href="../../.././Mathlib/Topology/Algebra/Module/Equiv.html#ContinuousLinearEquiv.mk">}</a></li></ul></details><details id="instances-for-list-SchwartzMap.fourierTransformCLE" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="SchwartzMap.fourierTransformCLE_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L144-L145">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLE_apply"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLE_apply</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/RCLike/Basic.html#RCLike">RCLike</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLE">fourierTransformCLE</a> <span class="fn">𝕜</span>)</span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="SchwartzMap.fourierTransformCLE_symm_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L147-L148">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLE_symm_apply"><span class="name">SchwartzMap</span>.<span class="name">fourierTransformCLE_symm_apply</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/RCLike/Basic.html#RCLike">RCLike</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.fourierTransformCLE">fourierTransformCLE</a> <span class="fn">𝕜</span>)</span>.<a href="../../.././Mathlib/Topology/Algebra/Module/Equiv.html#ContinuousLinearEquiv.symm">symm</a></span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv.fourierInv">FourierTransformInv.fourierInv</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="SchwartzMap.integral_bilin_fourier_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L160-L165">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_bilin_fourier_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_bilin_fourier_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn">E</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">F</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">G</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">ξ</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span> <span class="fn">ξ</span>)</span>)</span> <span class="fn">(<span class="fn">g</span> <span class="fn">ξ</span>)</span></span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">x</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">g</span>)</span> <span class="fn">x</span>)</span></span></span></div></div><p>The Fourier transform satisfies <code>∫ 𝓕 f * g = ∫ f * 𝓕 g</code>, i.e., it is self-adjoint.
+Version where the multiplication is replaced by a general bilinear form <code>M</code>.</p></div></div><div class="decl" id="SchwartzMap.integral_bilin_fourierIntegral_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L167-L168">source</a></div><div class="attributes">@[deprecated SchwartzMap.integral_bilin_fourier_eq (since := &quot;2025-11-16&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_bilin_fourierIntegral_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_bilin_fourierIntegral_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn">E</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">F</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">G</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">ξ</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span> <span class="fn">ξ</span>)</span>)</span> <span class="fn">(<span class="fn">g</span> <span class="fn">ξ</span>)</span></span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">x</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">g</span>)</span> <span class="fn">x</span>)</span></span></span></div></div><p><strong>Alias</strong> of <code><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_bilin_fourier_eq">SchwartzMap.integral_bilin_fourier_eq</a></code>.</p><hr></hr><p>The Fourier transform satisfies <code>∫ 𝓕 f * g = ∫ f * 𝓕 g</code>, i.e., it is self-adjoint.
+Version where the multiplication is replaced by a general bilinear form <code>M</code>.</p></div></div><div class="decl" id="SchwartzMap.integral_sesq_fourier_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L170-L173">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_sesq_fourier_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_sesq_fourier_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn">E</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L⋆[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">F</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">G</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">ξ</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span> <span class="fn">ξ</span>)</span>)</span> <span class="fn">(<span class="fn">g</span> <span class="fn">ξ</span>)</span></span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">x</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv.fourierInv">FourierTransformInv.fourierInv</a> <span class="fn">g</span>)</span> <span class="fn">x</span>)</span></span></span></div></div></div></div><div class="decl" id="SchwartzMap.integral_sesq_fourierIntegral_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L175-L176">source</a></div><div class="attributes">@[deprecated SchwartzMap.integral_sesq_fourier_eq (since := &quot;2025-11-16&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_sesq_fourierIntegral_eq"><span class="name">SchwartzMap</span>.<span class="name">integral_sesq_fourierIntegral_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn">E</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L⋆[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">F</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">G</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">ξ</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span> <span class="fn">ξ</span>)</span>)</span> <span class="fn">(<span class="fn">g</span> <span class="fn">ξ</span>)</span></span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">x</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransformInv.fourierInv">FourierTransformInv.fourierInv</a> <span class="fn">g</span>)</span> <span class="fn">x</span>)</span></span></span></div></div><p><strong>Alias</strong> of <code><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_sesq_fourier_eq">SchwartzMap.integral_sesq_fourier_eq</a></code>.</p></div></div><div class="decl" id="SchwartzMap.integral_sesq_fourier_fourier"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L178-L183">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_sesq_fourier_fourier"><span class="name">SchwartzMap</span>.<span class="name">integral_sesq_fourier_fourier</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn">E</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L⋆[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">F</span> <a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">→L[</a><a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a><a href="../../.././Mathlib/Topology/Algebra/Module/LinearMap.html#ContinuousLinearMap">]</a> <span class="fn">G</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">ξ</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span> <span class="fn">ξ</span>)</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">g</span>)</span> <span class="fn">ξ</span>)</span></span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">x</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><span class="fn">(<span class="fn">M</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">g</span> <span class="fn">x</span>)</span></span></span></div></div><p>Plancherel's theorem for Schwartz functions.</p><p>Version where the multiplication is replaced by a general bilinear form <code>M</code>.</p></div></div><div class="decl" id="SchwartzMap.integral_inner_fourier_fourier"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L191-L194">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_inner_fourier_fourier"><span class="name">SchwartzMap</span>.<span class="name">integral_inner_fourier_fourier</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">H</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">H</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">ξ</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#Inner.inner">inner</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span> <span class="fn">ξ</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">g</span>)</span> <span class="fn">ξ</span>)</span></span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">x</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#Inner.inner">inner</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span> <span class="fn">(<span class="fn">g</span> <span class="fn">x</span>)</span></span></span></div></div><p>Plancherel's theorem for Schwartz functions.</p></div></div><div class="decl" id="SchwartzMap.integral_norm_sq_fourier"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L196-L200">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.integral_norm_sq_fourier"><span class="name">SchwartzMap</span>.<span class="name">integral_norm_sq_fourier</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">H</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">H</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">ξ</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a><span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span> <span class="fn">ξ</span></span><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a> <a href="../../.././Init/Prelude.html#HPow.hPow">^</a> <span class="fn">2</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">∫</a> (<span class="fn">x</span> : <span class="fn">V</span>)<a href="../../.././Mathlib/MeasureTheory/Integral/Bochner/Basic.html#MeasureTheory.integral">,</a> <a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a><span class="fn"><span class="fn">f</span> <span class="fn">x</span></span><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a> <a href="../../.././Init/Prelude.html#HPow.hPow">^</a> <span class="fn">2</span></span></div></div></div></div><div class="decl" id="SchwartzMap.inner_fourier_toL2_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L202-L203">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.inner_fourier_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">inner_fourier_toL2_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">H</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">H</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#Inner.inner">inner</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span>
+    <span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">g</span>)</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#Inner.inner">inner</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">(<span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span> <span class="fn">(<span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span></span></div></div></div></div><div class="decl" id="SchwartzMap.inner_fourierTransformCLM_toL2_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L205-L206">source</a></div><div class="attributes">@[deprecated SchwartzMap.inner_fourier_toL2_eq (since := &quot;2025-11-13&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.inner_fourierTransformCLM_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">inner_fourierTransformCLM_toL2_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">H</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">H</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#Inner.inner">inner</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span>
+    <span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">g</span>)</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#Inner.inner">inner</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">(<span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span> <span class="fn">(<span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a>)</span></span></div></div><p><strong>Alias</strong> of <code><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.inner_fourier_toL2_eq">SchwartzMap.inner_fourier_toL2_eq</a></code>.</p></div></div><div class="decl" id="SchwartzMap.norm_fourier_toL2_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L208-L210">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.norm_fourier_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">norm_fourier_toL2_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">H</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">H</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a></span><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a><span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a></span><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a></div></div></div></div><div class="decl" id="SchwartzMap.norm_fourierTransformCLM_toL2_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/32d24245c7a12ded17325299fd41d412022cd3fe/Mathlib/Analysis/Distribution/FourierSchwartz.lean#L212-L213">source</a></div><div class="attributes">@[deprecated SchwartzMap.norm_fourier_toL2_eq (since := &quot;2025-11-13&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.norm_fourierTransformCLM_toL2_eq"><span class="name">SchwartzMap</span>.<span class="name">norm_fourierTransformCLM_toL2_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <a href="../../.././Mathlib/Data/Real/Basic.html#Real">ℝ</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">H</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Analysis/InnerProductSpace/Defs.html#InnerProductSpace">InnerProductSpace</a> <a href="../../.././Mathlib/Data/Complex/Basic.html#Complex">ℂ</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/UniformSpace/Cauchy.html#CompleteSpace">CompleteSpace</a> <span class="fn">H</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap">SchwartzMap</a> <span class="fn">V</span> <span class="fn">H</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././Mathlib/Analysis/Fourier/Notation.html#FourierTransform.fourier">FourierTransform.fourier</a> <span class="fn">f</span>)</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a></span><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a><span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/Analysis/Distribution/SchwartzSpace.html#SchwartzMap.toLp">toLp</a></span> <span class="fn">2</span> <a href="../../.././Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html#MeasureTheory.MeasureSpace.volume">MeasureTheory.volume</a></span><a href="../../.././Mathlib/Analysis/Normed/Group/Basic.html#Norm.norm">‖</a></div></div><p><strong>Alias</strong> of <code><a href="../../.././Mathlib/Analysis/Distribution/FourierSchwartz.html#SchwartzMap.norm_fourier_toL2_eq">SchwartzMap.norm_fourier_toL2_eq</a></code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

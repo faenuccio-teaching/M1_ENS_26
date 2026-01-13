@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Mathlib.NumberTheory.PowModTotient"],"instances":[],"name":"Mathlib.Data.Nat.PowModTotient"}

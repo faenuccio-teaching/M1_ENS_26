@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Mathlib.CategoryTheory.Limits.Shapes.RegularMono"],"instances":[],"name":"Mathlib.CategoryTheory.EffectiveEpi.RegularEpi"}

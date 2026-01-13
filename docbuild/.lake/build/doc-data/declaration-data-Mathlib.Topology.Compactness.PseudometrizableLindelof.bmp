@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Mathlib.Topology.Metrizable.Basic","Mathlib.Topology.Compactness.Lindelof","Mathlib.Tactic.Linter.DeprecatedModule"],"instances":[],"name":"Mathlib.Topology.Compactness.PseudometrizableLindelof"}

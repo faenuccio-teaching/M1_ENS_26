@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Mathlib.Algebra.Order.Group.Abs","Mathlib.Algebra.Order.Ring.Defs","Mathlib.Algebra.Order.Sub.Unbundled.Basic","Mathlib.Data.Set.Lattice","Mathlib.Tactic.Monotonicity.Attr"],"instances":[],"name":"Mathlib.Tactic.Monotonicity.Lemmas"}
