@@ -1,0 +1,253 @@
+# More on Types
+
+So far, we've seen how to *work* with types, and we want to give a somewhat more robust account of their theory.
+
+
+## The hierarchy
+We've seen that propositions are all types of a certain kind `Prop`; and that `ℕ` or `ℝ` are types of a different kind (both have more than one term!), called `Type`.
+
+There is actually a whole hierarchy of types
+
+    Prop : Type 0 : Type 1 : ... Type n : ...
+
+So, `Prop` is a *term* of the *type* `Type 0`, itself a *term* of the type `Type 1`, etc.
+
+Lean shortens `Type 0` to `Type`, omitting the index. It is where most known mathematical objects (like `ℕ`, `ℤ`, `ℂ`, etc) live: these algebraic objects are terms of the type `Type` ( `= Type 0`). `Sort *` is either `Type (*+1)` or `Prop` in the sense that `Sort 0 = Prop`, `Sort 1 = Type 0`, `Sort 37 = Type 36`...
+
+`⌘`
+
+## Dependent types
++++ Function types
+Given two types `X` and `Y`, it exists the type `X → Y`. Its terms can be interpreted as functions from `X` to `Y`, and are written
+```
+λ (x : X) ↦ (f x) : Y
+```
+or
+```
+fun (x : X) ↦ f x : Y
+```
++++
+
++++ Π-types and Σ-types
+
+
+What is the type of
+```
+fun (α : Type) ↦ (fun x : α ↦ x)
+```
+namely the assignment sending a type to its identity function?
+
+The "problem" is that for every element in the domain, the image lies in a different place: there is no "codomain".
+
+It belongs to the Π-type (called pi-type, or forall-type, or *dependent* product)
+```
+Π (α : Type), α → α
+∀ (α : Type), α → α
+(α : Type) → (α → α)
+```
+
+More generally, given a type `A` (where `A = Sort u` is allowed) and an "indexing family" `I : A → Sort v`, a term in
+```
+Π (a : A), I a
+∀ (a : A), I a
+(a : A) → I a
+```
+is the type whose terms are collections `(a, xₐ)` where `xₐ : I a`. These are written `λ a : A ↦ xₐ`, or `fun a : A ↦ xₐ`.
+
+* If you've got a geometric intuition, this looks very much like a fibration, where `A` is the base and `I a` is the fiber above `a : A`.
+
+* As the `λ` or `fun` notation suggest, `X → Y` is a special case of a Π-type, where `I : X → Sort v` is the constant function `fun x ↦ I x = Y`.
+
+Similarly, terms of the Σ-type
+```
+Σ (a : A), I a
+(a : A) × I a
+```
+are pairs `⟨a, xₐ⟩` where `xₐ : I a` (for technical reasons, we need here `A : Type u` and `I : A → Type v`, to use `Sort` need Σ', or ×').
+
+* These constructions of types that depend on terms give the name "dependent type theory" (or "dependent λ-calculus) to the underlying theory.
+
+* From the hierarchy point of view, if `A : Sort u` and `I : A → Sort v`, then `(a : A) → I a` and `(a : A) ×' I a` are types in `max u v` *except* when `v = 0` in which case both are still in `Prop`. This is the "impredicativity" of the underlying type-theory.
+
++++
+
++++ ∀ and ∃
+#### Universal quantifier
+
+Consider the statement
+> For every `n : ℕ` there exists a prime `p` such that `n < p`.
+
+Or
+```math
+∀\; n ∈ ℕ, ∃\; p\, \text{ prime such that } n < p
+```
+It is a Π-type, with `I : ℕ → Prop` being `I := fun n ↦ ∃ p prime, n < p`.
+
+Euclid's proof is a *term* of the above type.
+
+* You can *prove* a ∀ `intro`ducing a variable (thought of as a "generic element", do `intro x` to call this element `x`), and by proving `P x`.
+* If you have `H : ∀ x : α, P x` and also a term `y : α`, you can specialise `H` to `y`:
+
+        specialize H y (:= P y)
+
+* If the goal is `⊢ P y`, you might simply want to do `exact H y`, remembering that implications, `∀` and functions are all the same thing.
+
+
+#### Existential quantifier
+Similarly, consider the statement
+> There exists `n : ℕ` such that `n ^ 2 + 37 * n < e ^ n`.
+
+Or
+```math
+∃\; n ∈ ℕ, n^2+37 · n < 2 ^ n.
+```
+This is a Σ-type `(n : ℕ) × I n`, where `I := λ n ↦ (n ^ 2 + 37 * n < e ^ n) : Prop`: a term in it would be a pair `⟨n, hₙ⟩` where `n : ℕ` and `hₙ` is a proof that `n ^ 2 + 37 * n < e ^ n`.
+
+`∃` is a Σ-type: consider
+
+Once more,
+* To prove `∃ x, P x`, you first produce `x`, and then prove it satisfies `P x`: once you have constructed `x`, do `use x` to have Lean ask you for `⊢ P x`.
+* If you have `H : ∃ x, P x`, do `obtain ⟨x, hx⟩ := H` to obtain the term `x` together with a proof that `P x`.
+
+`⌘`
++++
+
++++ `¬` and Proofs by contradiction
+* The *definition* of `¬ P` is
+
+    P → `False`
+
+* The `exfalso` tactic changes *any* goal to proving `False` (useful if you have an assumption ` ... → False`).
+
+* Proofs by contradiction, introduced using the `by_contra` tactic, require you to prove `False` assuming `not (the goal)`: if your goal is `⊢ p`, typing `by_contra h` creates
+
+    | h : ¬ P
+      ⊢ False
+
+* The difference between `exfalso` and `by_contra` is that the first does not introduce anything, and forgets the actual goal; the second negates the goal and asks for `False`.
++++
+
+`⌘`
+
+## Inductive Types
+
+So far, we
+* met some abstract types `α, β, T : Type`, and variations like `α → T` or `β → Type`;
+* also met a lot of types `p, q, (1 = 2) ∧ (0 ≤ 5) : Prop`;
+* struggled a bit with `h : (2 = 3)` *versus* `(2 = 3) : Prop`;
+* also met `ℕ`, `ℤ`;
+* considered the subtype `{a : α // S a} = ↑S` corresponding to a set `S : α → Prop`.
+
+How can we *construct* new types? For instance, `ℕ`, or "the" subtype `↑S`, or `True : Prop`?
+
++++ Using **inductive types**!
+
+* *Theoretical* perspective: this is (fun & interesting, but) hard: you'll see it in other courses.
+* *Practical* one: think of `ℕ` and surf the wave. It has two **constructors**: the constant `0 : ℕ` and the function `succ : ℕ → ℕ`, and every `n : ℕ` is of either form.
+
+For example
+```lean
+inductive NiceType
+  | Tom : NiceType
+  | Jerry : NiceType
+  | f : NiceType → NiceType
+  | g : ℕ → NiceType → NiceType → NiceType
+```
+constructs the "minimal/smallest" type `NiceType` whose terms are
+1. Either `Tom`;
+1. Or `Jerry`;
+1. Or an application of `f` to some previously-defined term;
+1. Or an application of `g` to a natural and a pair of previously-defined terms.
+
+For example, `f (g 37 Tom Tom) : NiceType`.
+
+
+> **Every type in Lean is an inductive type**
+
+
+In order to
+1. construct terms of type `NiceType` you can use the ... *constructors*!;
+1. access terms of type `NiceType` (in a proof, say), use the tactic `cases` (or `cases'` or `rcases`):  the proofs for Tom and for Jerry might differ, so a case-splitting is natural.
+
+`⌘`
+
++++
+
+### Inductive Families and Inductive Predicates
+
+Recall the
+```lean
+def EvenNaturals : Set ℕ := (· % 2 = 0)
+```
+
+* For every `n`, there is a type `(EvenNaturals n) : Prop`.
+* This is a *family* of types, surely a family of *inductive* types!
+* But is it an inductive type *itself*?
+
++++ The target
+When defining `inductive NiceType` one can specify where the output lives:
+```lean
+inductive NiceType : Type
+  | Tom : NiceType
+  | Jerry : NiceType
+  | f : NiceType → NiceType
+  | g : ℕ → NiceType → NiceType → NiceType
+```
+
+or
+```
+inductive NiceProp : Prop
+  | Tom : NiceProp
+  | Jerry : NiceProp
+  | f : NiceProp → Prop
+  | g : ℕ → NiceProp → NiceProp → NiceProp
+```
+> The default is `Type`.
+
+#### Families
+If you want a *family* of types (say, of propositions), you simply say it straight away!
+```lean
+inductive NiceFamily : ℕ → Prop
+  | Tom : NiceFamily 0
+  | Jerry : NiceFamily 1
+  | F : ∀n : ℕ, NiceFamily n → NiceFamily (n + 37)
+  | G (n : ℕ) : ℕ → NiceFamily n → NiceFamily (n + 1) → NiceFamily (n + 3)
+```
+
+*Inductive Predicates* are inductive families in `Prop`.
+
+`⌘`
++++
+
+Having this theoretical framework at our disposal, we can revisit some of the previous constructions **don't list them here, just in the code, at least for the first four**
+
+* `False` is defined as...
+* `True` is defined as...
+* `Bool` is defined as...
+* `ℕ` is defined as ...
+* `∧` is a term of `Prop → Prop → Prop` whose constructors are.../that is defined as...
+* `↔ : Prop → Prop → Prop` represents *equivalences* and is defined as.../its constructors are...
+
+    An equivalence can be either *proved* or *used*.
+
+    * A goal `⊢ P ↔ Q` can broken into the goals `⊢ P → Q` and `⊢ Q → P` using `constructor`.
+    * The projections `(P ↔ Q).1` (or `(P ↔ Q).mp`) and `(P ↔ Q).2` (or `(P ↔ Q).mpr`) are the implications `P → Q` and `Q → P`, respectively.
+
+`⌘`
+
++++ Structures
+Among inductive types (*i. e.* all types...), some are remarkably useful for formalising mathematical objects: *structures*. Typically, they are used to *bundle* objects and properties together.
+
+As an example, let's see what a Monoid is:
+```
+structure (α : Type*) Monoid where
+...
+...
+```
+
+> **Definition**
+>> A structure is an inductive type with a unique constructor.
+
+* We've already encountered some structures: both `∧` and `↔` are structures, whereas... why is
+a structure all constructors of which are `Prop`-valued, itself in `Prop`?
++++
