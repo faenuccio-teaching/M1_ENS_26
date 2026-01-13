@@ -1,1 +1,0 @@
-{"declarations":[],"imports":["Init","Mathlib.Analysis.Normed.Module.PiTensorProduct.InjectiveSeminorm"],"instances":[],"name":"Mathlib.Analysis.NormedSpace.PiTensorProduct.InjectiveSeminorm"}

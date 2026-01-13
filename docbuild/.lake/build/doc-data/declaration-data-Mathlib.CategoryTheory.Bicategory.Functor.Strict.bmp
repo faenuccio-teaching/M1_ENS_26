@@ -1,1 +1,0 @@
-{"declarations":[],"imports":["Init","Mathlib.CategoryTheory.Bicategory.Strict.Pseudofunctor"],"instances":[],"name":"Mathlib.CategoryTheory.Bicategory.Functor.Strict"}

@@ -1,1 +1,0 @@
-{"declarations":[],"imports":["Init","Mathlib.Lean.Expr.Basic","Mathlib.Tactic.Basic","Batteries.Tactic.Lint.Misc","Mathlib.Tactic.Linter.DeprecatedModule"],"instances":[],"name":"Mathlib.Tactic.ExtractLets"}

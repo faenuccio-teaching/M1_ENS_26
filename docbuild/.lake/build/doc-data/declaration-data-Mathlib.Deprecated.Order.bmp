@@ -1,1 +1,0 @@
-{"declarations":[],"imports":["Init","Mathlib.Algebra.Order.GroupWithZero.Unbundled.Basic","Mathlib.Order.RelClasses","Mathlib.Tactic.Linter.DeprecatedModule"],"instances":[],"name":"Mathlib.Deprecated.Order"}

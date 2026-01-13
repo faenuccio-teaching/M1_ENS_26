@@ -1,0 +1,31 @@
+name: Build Lean documentation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lean toolchain
+        uses: leanprover/lean4-action@v1
+
+      - name: Build Lean docs
+        run: |
+          cd docbuild
+          lake build
+
+      - name: Commit generated docs
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add docbuild/.lake/build/doc
+          git commit -m "Update Lean documentation" || echo "No changes to commit"
+          git push
