@@ -18,12 +18,4 @@ keep_files:
 # Sidebar links
 show_downloads: false
 
-navigation:
-  - title: Home
-    url: /
-  - title: Documentation
-    url: /docs/index.html
-  - title: Lean
-    url: https://lean-lang.org/install/
-
 description: ""

@@ -42,7 +42,8 @@ Une source plus complète, très bien écrite et fort agréable à lire est
  Les deux références
 * [Theorem Proving in Lean 4](https://leanprover.github.io/theorem_proving_in_lean4/), par J. Avigad, L. de Moura, S. Kong et S. Ullrich
 * [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/), par J. Avigad et P. Massot
-contiennent aussi beaucoup de matériel pertinent pour notre cours.
+
+    contiennent aussi beaucoup de matériel pertinent pour notre cours.
 
 # Prérequis Lean et GitHub
 
