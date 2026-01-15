@@ -3,7 +3,7 @@ import Mathlib.Tactic
 variable (P Q R S : Prop)
 open Polynomial
 
--- **ToDo**
+
 example (n : ℕ) (hn : n ≤ 3) : n ≤ 5 := by
   apply le_trans
   use hn
@@ -14,12 +14,12 @@ example (n : ℕ) (hn : n ≤ 3) : n ≤ 5 := by
 /- # exact, intro, apply, rfl-/
 
 -- Use of the `exact` tactic
--- **ToDo**
+
 example (hP : P) : P := by
   exact hP
 
 -- Use of the `apply` tactic
--- **ToDo**
+
 example (h : P → Q) (hP : P) : Q := by
   apply h
   exact hP
@@ -27,13 +27,13 @@ example (h : P → Q) (hP : P) : Q := by
 -- `⌘`
 
 -- Use of the `intro` tactic
--- **ToDo**
+
 example : P → P := by
   intro hP
   exact hP
 
 -- Use `\.` to write `·`
--- **ToDo**
+
 example : (P → Q → R) → ((P → Q) → (P → R)) := by
   intro h1
   intro h2
@@ -45,11 +45,11 @@ example : (P → Q → R) → ((P → Q) → (P → R)) := by
 
 
 -- Use of the `rfl` tactic
--- **ToDo**
+
 example : P = P := by
   rfl
 
--- **ToDo**
+
 example : 3 = 2 + 1 := by
   rfl
 
@@ -58,18 +58,18 @@ example : 3 = 2 + 1 := by
 -- # `rw`
 
 -- `P` is not a proposition: it is a True/False statement for terms in `α`.
--- **ToDo**
+
 example (α : Type) (P : α → Prop) (x y : α) (hx : P x) (h : y = x) : P y := by
   rw [h]
   exact hx
 
 
--- **ToDo**
+
 example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x := by
   rw [← h] -- Use `\l` to write `←`
   exact hP
 
--- **ToDo**
+
 example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x := by
   rw [h] at hP
   exact hP
@@ -79,14 +79,14 @@ example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x :=
 /- # Conjunction / And
   Use `\and` to write `∧` -/
 
--- **ToDo**
+
 example : P → Q → P ∧ Q := by
   intro hP hQ
   constructor
   · exact hP
   · exact hQ
 
--- **ToDo**
+
 example : P ∧ Q → P := by
   intro h
   exact h.left
@@ -94,14 +94,13 @@ example : P ∧ Q → P := by
 /-  # Disjunction / Or
   Use `\or` to write `∨` -/
 
--- **ToDo**
+
 example : P → P ∨ Q := by
   intro hP
   left
   exact hP
 
-/- **ToDo**
-  symmetry of `∨`, and use of `assumption`  -/
+/- Symmetry of `∨`, and use of `assumption`  -/
 example : P ∨ Q → Q ∨ P := by
   intro h
   cases h
@@ -110,8 +109,7 @@ example : P ∨ Q → Q ∨ P := by
   · left
     assumption
 
-/- **ToDO**
-   the result of `cases` can be given explicit names, by using `rcases ? with ?1 | ?h2 `-/
+/- The result of `cases` can be given explicit names, by using `rcases ? with ?1 | ?h2 `-/
 example : P ∨ Q → (P → R) → (Q → R) → R := by
   intro h1 h2 h3
   rcases h1 with h | h
@@ -120,8 +118,7 @@ example : P ∨ Q → (P → R) → (Q → R) → R := by
   · apply h3
     exact h
 
-/- **ToDO**
-  use of the `by_cases` tactic. -/
+/- Use of the `by_cases` tactic. -/
 example : R ∨ ¬ R := by
   by_cases hR : R
   · left
@@ -141,15 +138,15 @@ example : R ∨ ¬ R := by
 #check Real.sin
 #check (Real.sin : ℝ → ℝ)
 
--- **ToDo**
+
 example : (1 : ℕ) = (1 : ℝ) := by
   rfl
 
--- **ToDo**
+
 example : 1 = (1 : ℚ) := by
   rfl
 
--- **ToDo**
+
 example : (1 : ℚ) = (1 : ℚ[X]):= by
   rfl
 
@@ -164,6 +161,11 @@ example : (1 : ℚ) = (1 : ℚ[X]):= by
 #check true
 #check false
 #check Bool
+
+
+
+example : True := by
+  exact trivial
 
 -- `⌘`
 

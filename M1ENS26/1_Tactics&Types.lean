@@ -3,7 +3,7 @@ import Mathlib.Tactic
 variable (P Q R S : Prop)
 open Polynomial
 
--- **ToDo**
+
 example (n : ℕ) (hn : n ≤ 3) : n ≤ 5 := by
   sorry
 
@@ -12,34 +12,34 @@ example (n : ℕ) (hn : n ≤ 3) : n ≤ 5 := by
 /- # exact, intro, apply, rfl-/
 
 -- Use of the `exact` tactic
--- **ToDo**
+
 example (hP : P) : P := by
   sorry
 
 -- Use of the `apply` tactic
--- **ToDo**
+
 example (h : P → Q) (hP : P) : Q := by
   sorry
 
 -- `⌘`
 
 -- Use of the `intro` tactic
--- **ToDo**
+
 example : P → P := by
   sorry
 
 -- Use `\.` to write `·`
--- **ToDo**
+
 example : (P → Q → R) → ((P → Q) → (P → R)) := by
   sorry
 
 
 -- Use of the `rfl` tactic
--- **ToDo**
+
 example : P = P := by
   sorry
 
--- **ToDo**
+
 example : 3 = 2 + 1 := by
   sorry
 
@@ -48,16 +48,16 @@ example : 3 = 2 + 1 := by
 -- # `rw`
 
 -- `P` is not a proposition: it is a True/False statement for terms in `α`.
--- **ToDo**
+
 example (α : Type) (P : α → Prop) (x y : α) (hx : P x) (h : y = x) : P y := by
   sorry
 
 
--- **ToDo**
+
 example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x := by
   sorry
 
--- **ToDo**
+
 example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x := by
   sorry
 
@@ -66,33 +66,30 @@ example (α : Type) (P Q : α → Prop) (x : α) (hP : P x) (h : P = Q) : Q x :=
 /- # Conjunction / And
   Use `\and` to write `∧` -/
 
--- **ToDo**
+
 example : P → Q → P ∧ Q := by
   sorry
 
--- **ToDo**
+
 example : P ∧ Q → P := by
   sorry
 
 /-  # Disjunction / Or
   Use `\or` to write `∨` -/
 
--- **ToDo**
+
 example : P → P ∨ Q := by
   sorry
 
-/- **ToDo**
-  symmetry of `∨`, and use of `assumption`  -/
+/- Symmetry of `∨`, and use of `assumption`  -/
 example : P ∨ Q → Q ∨ P := by
   sorry
 
-/- **ToDO**
-   the result of `cases` can be given explicit names, by using `rcases ? with ?1 | ?h2 `-/
+/- The result of `cases` can be given explicit names, by using `rcases ? with ?1 | ?h2 `-/
 example : P ∨ Q → (P → R) → (Q → R) → R := by
   sorry
 
-/- **ToDO**
-  use of the `by_cases` tactic. -/
+/- Use of the `by_cases` tactic. -/
 example : R ∨ ¬ R := by
   sorry
 
@@ -108,15 +105,15 @@ example : R ∨ ¬ R := by
 #check Real.sin
 #check (Real.sin : ℝ → ℝ)
 
--- **ToDo**
+
 example : (1 : ℕ) = (1 : ℝ) := by
   sorry
 
--- **ToDo**
+
 example : 1 = (1 : ℚ) := by
   sorry
 
--- **ToDo**
+
 example : (1 : ℚ) = (1 : ℚ[X]):= by
   sorry
 
@@ -131,6 +128,11 @@ example : (1 : ℚ) = (1 : ℚ[X]):= by
 #check true
 #check false
 #check Bool
+
+
+
+example : True := by
+  sorry
 
 -- `⌘`
 

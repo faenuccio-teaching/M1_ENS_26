@@ -1,6 +1,4 @@
 import Mathlib.Tactic
---
--- section Class
 
 variable (P Q R S : Prop)
 -- # More on Types
@@ -39,6 +37,8 @@ section DependentTypes
 
 universe u v
 variable {A : Sort u} (I : A → Sort v)
+
+
 #check (a : A) → I a
 #check Σ' (a : A), I a--(a : A), I a
 #check (a : A) × I a--(a : A), I a
@@ -49,11 +49,25 @@ variable {A' : Type u} (J : A' → Type v)
 
 -- `⌘`
 
-/- # `True`, `False`, negation, contradiction -/
+-- Euclid's proof, using impredicativity
+def Euclid_n : ℕ → Prop := fun n ↦ ∃ p, Nat.Prime p ∧ n < p
+def Euclid_all : Prop := (n : ℕ) → (Euclid_n n)
+def Euclid_forall : Prop := ∀ n, ∃ p, Nat.Prime p ∧ n < p
+example : Euclid_all = Euclid_forall := rfl
 
--- **ToDo**
-example : True := by
-  exact trivial
+theorem Euclid_all_proof : Euclid_all := by
+  intro n
+  dsimp only [Euclid_n]
+  sorry
+
+theorem exists_p_gt_100 (E : Euclid_forall) : ∃ p, Nat.Prime p ∧ 100 < p := by
+  specialize E 100
+  exact E
+  -- exact E 100
+
+-- `⌘`
+
+/- # False, negation, contradiction -/
 
 -- Use of the `exfalso` tactic
 -- **ToDo**

@@ -12,7 +12,7 @@ There is actually a whole hierarchy of kinds of types
 
 So, `Prop` is a *term* of the *type* `Type 0`, itself a *term* of the type `Type 1`, etc.
 
-Lean shortens `Type 0` to `Type`, omitting the index. It is where most known mathematical objects (like `ℕ`, `ℤ`, `ℂ`, etc) live: these algebraic objects are terms of the type `Type` ( `= Type 0`). `Sort *` is either `Type (*+1)` or `Prop` in the sense that `Sort 0 = Prop`, `Sort 1 = Type 0`, `Sort 37 = Type 36`...
+Lean shortens `Type 0` to `Type`, omitting the index. It is where most known mathematical objects (like `ℕ`, `ℤ`, `ℂ`, etc) live. `Sort *` is either `Type (*+1)` or `Prop` in the sense that `Sort 0 = Prop`, `Sort 1 = Type 0`, `Sort 37 = Type 36`...
 
 `⌘`
 
@@ -52,13 +52,13 @@ It belongs to the Π-type (called pi-type, or forall-type, or *dependent* produc
 (α : Type) → (α → α)
 ```
 
-More generally, given a type `A` (where `A = Sort u` is allowed) and an "indexing family" `I : A → Sort v`, a term in
+More generally, given a type `A` (where `A = Sort u` is allowed) and an function `I : A → Sort v`, seen as an "indexing family", a term in
 ```
 Π (a : A), I a
 ∀ (a : A), I a
 (a : A) → I a
 ```
-is the type whose terms are collections `(a, xₐ)` where `xₐ : I a`. These are written `λ a : A ↦ xₐ`, or `fun a : A ↦ xₐ`.
+is the type whose terms are collections `(a, xₐ)` for `a` spanning `A` and where `xₐ : I a`. These are written `λ a : A ↦ xₐ`, or `fun a : A ↦ xₐ`.
 
 * If you've got a geometric intuition, this looks very much like a fibration, where `A` is the base and `I a` is the fiber above `a : A`.
 
@@ -69,7 +69,7 @@ Similarly, terms of the Σ-type
 Σ (a : A), I a
 (a : A) × I a
 ```
-are pairs `⟨a, xₐ⟩` where `xₐ : I a` (for technical reasons, we need here `A : Type u` and `I : A → Type v`: if you really want to use `Sort` use Σ', or ×').
+are pairs `⟨a, xₐ⟩` where `xₐ : I a` (for technical reasons, we need here that `A : Type u` and  that `I : A → Type v`: if you really want to use `Sort` use Σ', or ×').
 
 * These constructions of types that depend on terms give the name "dependent type theory" (or "dependent λ-calculus") to the underlying theory.
 
