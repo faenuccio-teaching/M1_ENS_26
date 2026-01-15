@@ -48,7 +48,7 @@ Une source plus complète, très bien écrite et fort agréable à lire est
 
     contiennent aussi beaucoup de matériel pertinent pour notre cours.
 
-## Prérequis Lean et GitHub
+## Prérequis Lean et GitHub (#prerequis-lean-et-github)
 
 Avant le début du cours (le mardi 3 février 2026), assurez-vous de:
 * avoir accès à une connexion internet lorsque à l'ENS, idéalement via Eduroam;
