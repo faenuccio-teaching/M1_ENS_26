@@ -26,5 +26,7 @@ nav:
     url: /
   - title: Documentation
     url: /docs/
+  - title: Prérequis Lean et GitHub
+    url: /index.html#Prérequis Lean et GitHub
   - title: GitHub
     url: https://github.com/faenuccio-teaching/M1_ENS_26

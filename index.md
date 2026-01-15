@@ -1,7 +1,7 @@
 ---
 layout: default
 # the two items below are only used for `OnlyTheDoc`
-title: Introduction à la Formalisation Mathématique
+title: "Introduction à la Formalisation Mathématique"
 nav_order: 1
 ---
 
@@ -48,7 +48,7 @@ Une source plus complète, très bien écrite et fort agréable à lire est
 
     contiennent aussi beaucoup de matériel pertinent pour notre cours.
 
-# Prérequis Lean et GitHub
+## Prérequis Lean et GitHub
 
 Avant le début du cours (le mardi 3 février 2026), assurez-vous de:
 * avoir accès à une connexion internet lorsque à l'ENS, idéalement via Eduroam;
