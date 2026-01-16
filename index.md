@@ -20,7 +20,7 @@ Les cours ont lieu de 13h30 à 16h30 en Salle Bourbaki selon le calendrier suiva
 | Date      | Cours         | Fichiers annexes | Notes
 |-----------|---------------|---------------|---------------
 | 3 février | Tactiques et Types | [Fichier Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types.lean) et [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_lecture.md)|
-| 5 février | Types (2) | |
+| 5 février | Types (2) | [Fichier Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes.lean) et [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_lecture.md)|
 | 10 février | Algèbre | |
 | 17 février | Topologie | |
 | 19 février | Analyse | |
@@ -56,6 +56,4 @@ Avant le début du cours (le mardi 3 février 2026), assurez-vous de:
 * avoir configuré une installation `git`: si vous avez besoin d'aide, vous pouvez vous référer par exemple à la page <a href="https://www.imo.universite-paris-saclay.fr/~patrick.massot/misc/git.html">maintenue par Patrick Massot</a>;
 * avoir créé un compte <a href="https://github.com">GitHub</a> pour pouvoir soumettre votre travail;
 * installer Lean sur votre ordinateur, en suivant les [instructions officielles](https://lean-lang.org/install/): si vous rencontrez des difficultés, on en parlera lors du premier cours;
-* d'avoir téléchargé (via `git clone`) le *repository* du cours à l'adresse https://github.com/faenuccio-teaching/ENS_26.git.
-
-Autres informations et détails sont disponibles sur la [page officielle](https://faenuccio-teaching.github.io/ENS_26/) du cours.
+* d'avoir téléchargé (via `git clone`) le *repository* du cours à l'adresse [https://github.com/faenuccio-teaching/M1_ENS_26.git](https://github.com/faenuccio-teaching/M1_ENS_26.git).

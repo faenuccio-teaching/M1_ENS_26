@@ -81,21 +81,18 @@ example (f : ℝ → ℝ) (h : ∀ x, ∃ y, x = f y) : Surjective f := by
 /- # False, negation, contradiction -/
 
 -- Use of the `exfalso` tactic
--- **ToDo**
 example : False → P := by
   intro h
   exfalso
   exact h
 
 -- type `¬` by typing `\not`.
--- **ToDo**
 example : P → Q → P → ¬ Q → ¬ P := by
   intro hp hq hp' h_neq abs
   apply h_neq
   exact hq
 
 -- Use of the `by_contra` tactic
--- **ToDo**
 example : (¬Q → ¬P) → P → Q := by
   intro h1 hP
   by_contra h2
@@ -213,7 +210,7 @@ def JustOne_inv : ENS_Nat → ℕ
 end Structures
 
 
-section Exercise
+section Exercises
 -- # Exercises
 
 -- **Exercise**
@@ -227,20 +224,24 @@ section Exercise
 
 
 -- **Exercise**
-/- Consider the function `F` sending `n : ℕ` to the statement\
-`0 ≠ n ∧ (∀ α : Type 2, ∃ v w : Vector α n), v ≠ w`)
+/- Consider the function `F` sending `n : ℕ` to the statement
+`0 ≠ n ∧ (∀ α : Type 2, ∃ v w : Vector α n), v ≠ w`
 1. How do you expect `F 2` to look like?
-2. What is the type of `fun n ↦ ((fun α : Type 2) ↦ ∃ v : Vector α n, v ≠ 0`?
-3. What is the type of `fun n ↦ (∀ α : Type 2, ∃ v : Vector α n, v ≠ 0)`? To which universe level
+2. What is the type of `fun n ↦ (fun (α : Type 2) ↦ Vector α n)`? To which universe level does this
+  type belong to?
+3. What is the type of `fun n ↦ ((fun α : Type 2) ↦ ∃ v : Vector α n, v ≠ 0`?
+4. What is the type of `fun n ↦ (∀ α : Type 2, ∃ v : Vector α n, v ≠ 0)`? To which universe level
   does this type belong to?
-4. What is the type of `F 2`, and to which universe level does this type belong?
-5. Is `F 2` true?
-6. What is the type of `F` and to which universe level does this type belong?
+5. What is the type of `F 2`, and to which universe level does this type belong?
+6. Is `F 2` true?
+7. What is the type of `F` and to which universe level does this type belong?
 -/
 
 -- *1.* `F 2` should be a pair of a proof that `0 ≠ 2` and of the existence of a non-zero
 -- 2-dimensional vector for every `v`.
--- *2.* The type of `fun (n : ℕ) ↦ (fun (α : Type 2) ↦ ∃ (v w : Vector α n), v ≠ w)` is
+-- *2.* The type of `fun n ↦ (fun (α : Type 2) ↦ Vector α n)` is
+-- `ℕ → Type 2 → Type 2`, which belongs to `Type 3`.
+-- *3.* The type of `fun (n : ℕ) ↦ (fun (α : Type 2) ↦ ∃ (v w : Vector α n), v ≠ w)` is
 -- `ℕ → Type 2 → Prop`
 -- *3.* The type of `fun (n : ℕ) ↦ (∀ α : Type 2, ∃ (v w : Vector α n), v ≠ w)` is `ℕ → Prop`, which
 -- is of universe level `Type 0` since both `ℕ` and `Prop` are terms in `Type 0`.
@@ -334,7 +335,7 @@ def swap : Politics → Politics
   | Left => Right
 
 /- **Exercise**
-Prove that if someone is not on the `Right`, they are on the `Left` -/
+State and prove that if someone is not on the `Right`, they are on the `Left` -/
 example (a : Politics) : a ≠ Right → a = Left := by
   intro ha
   cases a
@@ -378,9 +379,5 @@ example : (P ∨ Q) ∨ R ↔ P ∨ Q ∨ R := by
       · right
         exact h22
 
-/- **§ Some exercises** -/
 
-
-
-
-end Exercise
+end Exercises
