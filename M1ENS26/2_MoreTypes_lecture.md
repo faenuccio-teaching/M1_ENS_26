@@ -56,7 +56,7 @@ It belongs to the Π-type (called pi-type, or forall-type, or *dependent* produc
 (α : Type) → (α → α)
 ```
 
-More generally, given a type `A` (where `A = Sort u` is allowed) and an function `I : A → Sort v`, seen as an "indexing family", a term in
+More generally, given a type `A` (where `A = Sort u` is allowed) and a function `I : A → Sort v`, seen as an "indexing family",
 ```
 Π (a : A), I a
 ∀ (a : A), I a
@@ -77,7 +77,7 @@ are pairs `⟨a, xₐ⟩` where `xₐ : I a` (for technical reasons, we need her
 
 * These constructions of types that depend on terms give the name "dependent type theory" (or "dependent λ-calculus") to the underlying theory.
 
-* From the hierarchy point of view, if `A : Sort u` and `I : A → Sort v`, then `(a : A) → I a` and `(a : A) ×' I a` are types in `max u v` *except* when `v = 0` in which case both are still in `Prop`. This is the "impredicativity" of the underlying type-theory.
+* From the hierarchy point of view, if `A : Sort u` and `I : A → Sort v`, then `(a : A) → I a` and `(a : A) ×' I a` are types in `Sort (max u v)` *except* when `v = 0` in which case both are still in `Prop`. This is the "impredicativity" of the underlying type-theory.
 
 `⌘`
 +++
@@ -85,10 +85,7 @@ are pairs `⟨a, xₐ⟩` where `xₐ : I a` (for technical reasons, we need her
 +++ ∀ and ∃
 #### Universal quantifier
 
-Consider the statement
-> For every `n : ℕ` there exists a prime `p` such that `n < p`.
-
-Or
+Consider the type
 ```math
 ∀\; n ∈ ℕ, ∃\; p\, \text{ prime such that } n < p
 ```
@@ -96,7 +93,7 @@ It is a Π-type, with `I : ℕ → Prop` being `I := fun n ↦ ∃ p prime, n < 
 
 Euclid's proof is a *term* of the above type.
 
-* You can *prove* a ∀ `intro`ducing a variable (thought of as a "generic element", do `intro x` to call this element `x`), and by proving `P x`.
+* You can *prove* a ∀ by `intro`ducing a variable (thought of as a "generic element", do `intro x` to call this element `x`), and by proving `P x`.
 * If you have `H : ∀ x : α, P x` and also a term `y : α`, you can specialise `H` to `y`:
 
         specialize H y (:= P y)
@@ -106,9 +103,6 @@ Euclid's proof is a *term* of the above type.
 
 #### Existential quantifier
 Similarly, consider the statement
-> There exists `n : ℕ` such that `n ^ 2 + 37 * n < e ^ n`
-
-or
 ```math
 ∃\; n ∈ ℕ, n^2+37 · n < 2 ^ n.
 ```
@@ -130,13 +124,13 @@ Once more,
 
 * Proofs by contradiction, introduced using the `by_contra` tactic, require you to prove `False` assuming `not (the goal)`: if your goal is `⊢ P`, typing `by_contra h` creates
 
-    | h : ¬ P
+      h : ¬ P
       ⊢ False
 
 * The difference between `exfalso` and `by_contra` is that the first does not introduce anything, and forgets the actual goal; the second negates the goal and asks for `False`.
-+++
 
 `⌘`
++++
 
 ## Inductive Types
 
@@ -170,11 +164,11 @@ constructs the "minimal/smallest" type `NiceType` whose terms are
 
 For example, `f (g 37 Tom Tom) : NiceType`.
 
-Every inductive type comes with its *recursor*, that is automatically constructed by Lean: it builds dependent functions *out of the inductive type being constructed* by declaring the value that should be assigned to every constructor.
+* Every inductive type comes with its *recursor*, that is automatically constructed by Lean: it builds dependent functions *out of the inductive type being constructed* by declaring the value that should be assigned to every constructor.
 
-In order to
-1. construct terms of type `NiceType` you can use the ... *constructors*!;
-1. access terms of type `NiceType` (in a proof, say), use the tactic `cases` (or or `rcases`):  the proofs for Tom and for Jerry might differ, so a case-splitting is natural.
+* In order to
+    1. construct terms of type `NiceType` you can use the ... *constructors*!;
+    1. access terms of type `NiceType` (in a proof, say), use the tactic `cases` (or or `rcases`):  the proofs for Tom and for Jerry might differ, so a case-splitting is natural.
 
 `⌘`
 
@@ -183,24 +177,25 @@ In order to
 By *every* we mean `True`, `False`, `Bool`, `P ∧ Q`... every! And among those,
 
 #### If and only if statements:
-`↔ : Prop → Prop → Prop`: it is an inductive type (of course), with
+`↔ : Prop → Prop → Prop`, giving rise to `P ↔ Q`: it is an inductive type (of course), with
 * two parameters (`P` and `Q`)
 * one constructor, itself made of
     * two fields: `Iff.mp : P → Q` and `Iff.mpr : Q → P`
 
+Calling `#print Iff` produces:
 ```
-structure Iff (a b : Prop) : Prop
+structure Iff (P Q : Prop) : Prop
     number of parameters: 2
     fields:
-        Iff.mp : a → b
-        Iff.mpr : b → a
-    constructor: Iff.intro {a b : Prop} (mp : a → b) (mpr : b → a) : a ↔ b
+        Iff.mp : P → Q
+        Iff.mpr : Q → P
+    constructor: Iff.intro {P Q : Prop} (mp : P → Q) (mpr : Q → P) : P ↔ Q
 ```
 
-An equivalence can be either *proved* or *used*. This amounts to saying that
+An equivalence can be either *proved* or *used*. This amounts to saying that:
 
 * A goal `⊢ P ↔ Q` can be broken into the goals `⊢ P → Q` and `⊢ Q → P` using `constructor`: indeed, to prove `⊢ P ↔ Q` amounts to creating *the unique term* of `P ↔ Q` which has two constructors;
-* The projections `(P ↔ Q).1` (or `(P ↔ Q).mp`) and `(P ↔ Q).2` (or `(P ↔ Q).mpr`) are the implications `P → Q` and `Q → P`, respectively. These are the two "components" of the term in `P ↔ Q`.
+* The projections `(P ↔ Q).mp` (or `(P ↔ Q).1`) and `(P ↔ Q).mpr` (or `(P ↔ Q).2`) are the implications `P → Q` and `Q → P`, respectively. These are the two "components" of the term in `P ↔ Q`.
 
 `⌘`
 
@@ -224,9 +219,9 @@ structure (M : Type*) Monoid where
     | one_mul (a : M) : 1 * a = a
     | mul_one (a : M) : 1 * 1 = a
 ```
-* Two of these fields are terms in types of kind `Type *`
-* Three of them are terms in types of kind `Prop`
-* We often call a structure whose constructor fields are both in `Type *` and in `Prop` a *mixin*.
+* Two of these fields are terms in types of kind `Type *`;
+* three of them are terms in types of kind `Prop`;
+* we often call a structure having constructor fields both in `Type *` and in `Prop` a *mixin*.
 
 So, 
 * a *monoid structure* on `M` is a collection `⟨*, 1, mul_assoc, one_mul, mul_one⟩`

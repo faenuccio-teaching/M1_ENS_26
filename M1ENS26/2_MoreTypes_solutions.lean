@@ -123,15 +123,15 @@ open NiceType
 
 noncomputable
 def F : NiceType → ℝ := by
-  let G := @NiceType.rec (motive := fun _ ↦ ℝ)
+  let G := NiceType.rec (motive := fun _ ↦ ℝ)
   -- simp only at G
   exact G Real.pi (Real.exp 1) (fun _ x ↦ x) (fun n _ _ x y ↦ x * y)
 
 def Cat : NiceType := Tom
 
-def Hunt : NiceType := g 2 Cat Jerry
+def Hunting : NiceType := g 2 Cat Jerry
 
--- ## Another example
+-- #### Another example
 
 inductive ENS_Or (p q : Prop) : Prop
 | left : p → ENS_Or p q
@@ -140,7 +140,7 @@ inductive ENS_Or (p q : Prop) : Prop
 #print ENS_Or
 
 example (n : ℕ) : ENS_Or (n = 0) (∃ m, n = Nat.succ m) := by
-  rcases n with _ | a -- this is a case-splitting on the way an `ENS_succ` can be constructed
+  rcases n with _ | a -- this is a case-splitting on the way a `n : ℕ` can be constructed
   · apply ENS_Or.left
     rfl
   · apply ENS_Or.right
@@ -203,8 +203,6 @@ def JustOne_fun : ℕ → ENS_Nat
   | 0 => ENS_zero
   | Nat.succ m => ENS_succ (JustOne_fun m)
 
-
---This we leave as an exercise...
 def JustOne_inv : ENS_Nat → ℕ
   | ENS_zero => 0
   | ENS_succ a => Nat.succ (JustOne_inv a)
