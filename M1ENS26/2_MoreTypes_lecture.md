@@ -172,7 +172,7 @@ For example, `f (g 37 Tom Tom) : NiceType`.
 
 `⌘`
 
-> **Every type in Lean is an inductive type**
+> **Every type in Lean is either a function type, a quotient type or an inductive type**
 
 By *every* we mean `True`, `False`, `Bool`, `P ∧ Q`... every! And among those,
 
