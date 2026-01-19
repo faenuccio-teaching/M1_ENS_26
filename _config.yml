@@ -4,7 +4,7 @@ url: https://faenuccio-teaching.github.io
 baseurl: "/M1_ENS_26"
 repository: faenuccio-teaching/M1_ENS_26
 layout: default
-nav_enabled: true
+nav_enabled: false
 
 remote_theme: just-the-docs/just-the-docs
 plugins:
