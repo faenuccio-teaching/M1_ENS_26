@@ -3,7 +3,6 @@ import Mathlib
 section Groups
 
 -- ## Bad Ideas
--- variable {G C : Type*} [Group G] [CommGroup C]
 
 example {G : Type*} [Group G] (g e : G) (h : g * e = g) : e = 1 := by
   calc e = 1 * e := by rw [one_mul]
@@ -34,14 +33,13 @@ lemma unit_surj (A B : Type*) [CommRing A] [CommRing B] {f : A →+* B} (a : Aˣ
   · simp [← map_mul, huv]
   · simp [← map_mul, hvu]
 
-/- ## Basic facts about groups
-1. Def: unit, basic multiplication, `grind/group`
-2. Add vs Comm groups
-3. Subgroups -/
+-- `⌘`
 
--- ### Definitions, basic properties and tactics
+-- ## Basic facts about groups
+
+-- ### Definitions, basic properties and some tactics
 structure WrongGroup where
-  carrier : Type*
+  carrier : Type _
   one : carrier
   mul : carrier → carrier → carrier
   inv : carrier → carrier
@@ -70,66 +68,61 @@ lemma WrongGroup.mul_inv_cancel {α : WrongGroup} (x : α.carrier) :
 --   protected inv_mul_cancel : ∀ a : G, a⁻¹ * a = 1
 
 #print DivInvMonoid
-/- Mathlib chose the second solution, because this way we can put a group structure
-on an already defined type, such as `ℤ` or `Equiv₁ α α`.
-(But when we define the category of groups, its objects are terms of a type resembling
-`BundledGroup₁`.) -/
 
 example {G : Type*} [Group G] (x y z : G) : x * (y * z) * (x * z)⁻¹ * (x * y * x⁻¹)⁻¹ = 1 := by
   group
 
--- **Make a better one, using commutativity**
-example {G : Type*} [CommGroup G] (x y z : G) : x * (y * z) * (x * z)⁻¹ * (x * y * x⁻¹)⁻¹ = 1 := by
-  group
+example {G : Type*} [CommGroup G] (x y : G) : (x * y)⁻¹ = x⁻¹ * y⁻¹ := by
+  -- group
+  rw [mul_inv_rev, mul_comm]
+  -- rw [mul_inv]
 
 example {A : Type*} [AddGroup A] (x y : A) : x + y + 0 = x + y := by
-  group
+  -- group
+  simp
 
 example {A : Type*} [AddCommGroup A] (x y : A) : x + y + 0 = x + y := by
   abel
 
+
+#check mul_assoc
+-- whatsnew in
 -- @[to_additive]
-lemma IHP_mul {G : Type} [Group G] {x y : G} (h : x * y = 1) : x * y ^ 2 = y := by
+lemma mul_square {G : Type*} [Group G] {x y : G} (h : x * y = 1) : x * y ^ 2 = y := by
   rw [pow_two]
   rw [← mul_assoc]
   rw [h]
   group
 
-example (A : Type) [AddGroup A] {a b : A} (h : a + b = 0) : a + 2 • b = b := by
+example {A : Type*} [AddGroup A] {a b : A} (h : a + b = 0) : a + 2 • b = b := by
+  -- exact add_even h
   rw [two_nsmul, ← add_assoc, h]
   simp
 
+-- `⌘`
+
 -- ## Classes
 
--- Before Subgroups use `classes` for 1, 0, *, +; and fix the `α.carrier` above using `SetLike`.
+-- What's going on here?!?!
+example (G : Type*) [Group G] [CommGroup G] (g : G) : 1 * g = g := by
+  rw [one_mul]
 
-#print SetLike -- a class for types that look like types of sets
--- (`SetLike A G` comes with a coercion `SetLike.coe : A → Set G`,
--- and a condition saying that this coercion is injective)
+instance : CoeSort WrongGroup (Type) where
+  coe := (·.carrier)
 
-@[ext] -- creates a theorem saying that subgroups are equal if their carriers are
-structure Subgroup₁ where
-  /-- The carrier of a subgroup. -/
-  carrier : Set G
-  /-- The product of two elements of a subgroup belongs to the subgroup. -/
-  mul_mem {a b} : a ∈ carrier → b ∈ carrier → a * b ∈ carrier
-  /-- The inverse of an element of a subgroup belongs to the subgroup. -/
-  inv_mem {a} : a ∈ carrier → a⁻¹ ∈ carrier
-  /-- The unit element belongs to the subgroup. -/
-  one_mem : 1 ∈ carrier
+-- Anonymous function def!
+instance : Coe WrongGroup (Type ) where
+  coe := (·.carrier)
 
-#print Subgroup₁ --note that `G` and `Group G` are arguments
+example {α : WrongGroup} (x : α) :
+    α.mul x (α.inv x) = α.one := by
+  rw [← α.inv_mul_cancel (α.inv x), α.inv_eq_of_mul _ _ (α.inv_mul_cancel x)]
 
-/-- Subgroups in `G` can be seen as sets in `G`. -/
-instance : SetLike (Subgroup₁ G) G where
-  coe := Subgroup₁.carrier
-  coe_injective' _ _ := Subgroup₁.ext
 
-/- Examples of the coercion to sets un action:-/
 
-example (H : Subgroup₁ G) : 1 ∈ H := H.one_mem   -- elements of a subgroup
+-- ### More about groups
 
-example (H : Subgroup₁ G) (α : Type) (f : G → α) := f '' H  -- image by a function
+variable (G : Type*) [Group G]
 
 /- Now for the group structure on subgroups.
 
@@ -137,32 +130,54 @@ We have an automatic coercion from sets to types, so we get a coercion
 from subgroups to types:
 -/
 
-example (H : Subgroup₁ G) (x : H) : 0 = 0 := by
-  set x' : G := x.1
-  set x'' : G := x.val
-  set x''' : G := (x : G)
-  have xprop := x.2
-  have xprop' := x.property
-  rfl
 
-/- Our main tool to prove things about terms of type `↥H` is the
-theorem `SetCoe.ext` (also provided by `SetLike`), which says that
-the function `↥H → G` sending `x` to `x.val` is injective.-/
+example (H : Subgroup G) : 1 ∈ H := H.one_mem   -- elements of a subgroup
 
-#print SetCoe.ext -- If `a, b : ↥H`, then `a = b` (in `↥H`) as soon as
---`a.val = b.val` (in `G`).
+-- This looks stupid but it is not!
+example (H : Subgroup G) (x : H) : (1 : G) = (1 : H) := by sorry
+  -- set x' : G := x.1
+  -- set x'' : G := x.val
+  -- set x''' : G := (x : G)
+  -- have xprop := x.2
+  -- have xprop' := x.property
+  -- rfl
 
-instance Subgroup₁Group (H : Subgroup₁ G) : Group H where
-  mul x y := ⟨x*y, H.mul_mem x.property y.property⟩
-  mul_assoc x y z := by
-    apply SetCoe.ext
-    exact mul_assoc (x : G) y z
-  one := ⟨1, H.one_mem⟩
-  one_mul x := SetCoe.ext (one_mul (x : G))
-  mul_one := fun x ↦ SetCoe.ext (mul_one (x : G))
-  inv x := ⟨x⁻¹, H.inv_mem x.property⟩
-  inv_mul_cancel x := SetCoe.ext (inv_mul_cancel (x : G))
+-- What happens if one writes `AddSubgroup ℤ`? And how can we populate the fields automatically?
+example : AddSubgroup ℤ where
+  carrier := {n : ℤ | Even n}
+  add_mem' := by
+    intro a b ha hb
+    -- simp at ha hb --not needed, actually
+    simp only [Even] at ha hb
+    obtain ⟨m, hm⟩ := ha
+    obtain ⟨n, hn⟩ := hb
+    rw [hn, hm]
+    use n + m
+    abel
+    -- grind
+  zero_mem' := ⟨0, by abel⟩
+  neg_mem' {x} hx := by
+    obtain ⟨r, _⟩ := hx
+    exact ⟨-r, by simp_all⟩
 
+---dot notation!
+example : (Subgroup.center G).Normal := by
+-- #print Subgroup.Normal
+  apply Subgroup.Normal.mk
+  intro z hz g
+  let hz' := hz
+  rw [Subgroup.mem_center_iff] at hz --this looses hz
+  specialize hz g
+  rw [← mul_inv_eq_iff_eq_mul] at hz
+  rw [hz]
+  -- exact Subgroup.instNormalCenter
+
+-- `⌘`
+
+example (N : Subgroup G) [N.Normal] (x y : G) : (x : G ⧸ N) = (y : G ⧸ N) ↔ x * y⁻¹ ∈ N := sorry
+
+
+-- ### Group homomorphisms
 @[ext]
 structure MonoidHom₁ (M N : Type*) [Monoid M] [Monoid N] where
 -- We use the mathlib classes now.
@@ -199,16 +214,38 @@ instance {G H : Type*} [Monoid G] [Monoid H] :
 
 
 
--- ## Group Homomorphisms
-
-
-
 end Groups
 
 section Rings
+
 end Rings
 
 section Exercises
+
+-- Why is the following example broken? Fix its statement, then prove it.
+example (G : Type*) [Group G] (H₁ H₂ : Subgroup G) : Subgroup (H₁ ∩ H₂) := sorry
+
+
+example (A : Type*) [AddCommGroup A] (N : AddSubgroup A) [N.Normal] (x y : A) :
+    (x : A ⧸ N) = (y : A ⧸ N) ↔ y - x ∈ N := sorry
+
+/- Define the integers `ℤ` as a subgroup of the rationals `ℚ`: we'll see next time how to construct
+(sub)sets, for the time being use `Set.range ((↑) : ℤ → ℚ)` , by copy-pasting it, as carrier. -/
+example : AddSubgroup ℚ where
+  carrier := Set.range ((↑) : ℤ → ℚ)
+  add_mem' := by
+    rintro _ _ ⟨n, rfl⟩ ⟨m, rfl⟩
+    use n + m
+    simp
+  zero_mem' := by
+    use 0
+    simp
+  neg_mem' := by
+    rintro _ ⟨n, rfl⟩
+    use -n
+    simp
+
+
 
 end Exercises
 section Later
