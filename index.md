@@ -10,7 +10,7 @@ nav_exclude: true
 
 Ce site contient les informations concernant le Cours Avancé [Formalisation Mathématique](https://www.math.ens.psl.eu/formations/ca-formalisation-mathematique/) pour le M1 du Département de mathématiques et applications de l'ENS-Paris, qui a lieu au deuxième semestre 2025--26.
 
-Le cours est assuré par [Filippo A. E. Nuccio](https://perso.univ-st-etienne.fr/nf51454h/): vous pouvez me contacter [p]ar mail](mailto:filippo.nuccio@univ-st-etienne.fr) et mon bureau est le T8, au quatrième étage. Le matériel est en anglais, le cours aura (probablement) lieu en français. 
+Le cours est assuré par [Filippo A. E. Nuccio](https://perso.univ-st-etienne.fr/nf51454h/): vous pouvez me contacter [par mail](mailto:filippo.nuccio@univ-st-etienne.fr) et mon bureau est le T8, au quatrième étage. Le matériel est en anglais, le cours aura (probablement) lieu en français. 
 
 Chaque cours vient avec un fichier `.md` (exporté en `.pdf` aussi) que vous trouvez plus bas et qui contient le matériel discuté, ainsi qu'avec un fichier `.lean` à utiliser pendant le cours. Les solutions sont rajoutées le lendemain du cours, en général.
 
