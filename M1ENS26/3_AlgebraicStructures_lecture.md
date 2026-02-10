@@ -14,7 +14,7 @@ In this section we're going to see
 
 The problems with `WrongGroup` and `WrongSemigroup` are (among others...)
 * We're carrying around `mul`, `one` and `inv`, together with the type: `α.one` or `X.mul` or `G.inv`...
-* Math is full of hierarchies, and these are not respected: but we don't want to re-prove a theorem on additive commutative groups for rings, then for commutative rings, then for integral domains, then for fields...
+* Math is full of hierarchies, and these are not respected (the associativity example...): but we don't want to re-prove a theorem on additive commutative groups for rings, then for commutative rings, then for integral domains, then for fields...
 * Although we can create 
 ```
 def Nplus : WrongSemigroup where
@@ -90,7 +90,7 @@ Warning: Classes can have parameters, so if `G` and `H` are types, `Group G` and
 ```
 To introduce a class assumption in a lemma, in a definition, or in a new class, we use `[` and `]` and typically *we don't name it*: because this should be useless.
 
-To check what is the canonical term of a certain class type, use the command `#synth`, and to construct it use `inferInstance` (in term mode) or `infer_instance` (in tactic mode).
+To check what is the canonical term of a certain class type, use the command `#synth`, and to recall it use `inferInstance` (in term mode) or `infer_instance` (in tactic mode).
 
 `⌘`
 
@@ -115,19 +115,19 @@ structure Subgroup (G : Type*) [Group G] extends Submonoid G : Type* where
     one_mem' : 1 ∈ self.carrier
     inv_mem' {x : G} : x ∈ self.carrier → x⁻¹ ∈ self.carrier
 ```
-We'll discuss what "sets" are next time, but for now just record that given any type `G : Type*`, 
-and any set `S : Set G`, we obtain for every `g : G` the type (of kind `Prop`) `g ∈ S`, that can be either true or false.
+We'll discuss what "sets" are in the next class, but for now just record that given any type `G : Type*`, 
+and any set `S : Set G`, we obtain for every `g : G` the type (of kind `Prop`) `g ∈ S`, that can be either inhabited (the proposition is true) or empty (the proposition is false).
 
-Exactly as we've discussed for monoids, that "being a subgroup" is not a `Prop`-like
-notion: the perspective is that, to each group `G`, we attach a new *type* `Subgroup G` whose terms
-represent the different subgroups of `G`, seen as an underlying set and a collection of proofs that
+Exactly as we've discussed for monoids, that of "being a subgroup" is not a `Prop`-like
+notion: rather, to each group `G` we attach a new *type* `Subgroup G` whose terms
+represent the different subgroups of `G`, each seen as an underlying set and a collection of proofs that
 the set is multiplicatively closed (a "mixin").
 
 Finally, the type `Subgroup G` is ordered, and `{1} : Subgroup G` is actually `⊥` (the bottom element, written `\bot`) whereas `G : Subgroup G` is `⊤` (the top element, written `\top`).
 
 `⌘`
 
-#### Morphisms
+#### Homomorphisms
 Given *monoids* `M` and `N`, a *monoid* homomorphism is a function `f : M → N` that respects the operation and the unity. There could be (at least) two ways to define this: 
 
 1. Declare the property `MonHom : (M → N) → Prop` as
@@ -153,6 +153,9 @@ These approaches are not *very* different, the problem with the first is that to
 
 * A **group homomorphism** is just a monoid homomorphism: the property `f (x⁻¹) = (f x)⁻¹` can be proven. But this relies on class type inference...
   
+  +++ Why does it rely on class type inference?
+  Because if we only define monoid homomorphisms, when `G` and `H` are group and we write `f : G →* H` Lean would complain that `G` and `H` are not groups. But it understands that they are *also* monoids.
+  +++
 
 * **Take-home message**: homomorphisms between algebraic structures are structures on their own, "bundling" together the underline function and all its properties.
 
@@ -170,16 +173,16 @@ class Setoid (α : Sort u) where
 Observe that `α` is a parameter, so a term in `Setoid α` is an equivalence relation on `α`. This comes with a notation `a ≈ b` (typed as `\~~`) meaning that `r a b`, *i. e.* `a,b : α` are equivalent.
 
 +++ Why a class instead of a structure? Isn't this an obsession?
-It would not change much, and in many *explicit* occurrences terms of `Setoid α` occur named and in parenthesis, as in `(s : Setoid α)`. But we want automation, so as to find the *canonical* equivalence relation on `G ⧸ H` under the assumption that `H` is normal, and not having Lean asking us to choose one all the time.
+It would not change much, and in many *explicit* occurrences terms of `Setoid α` are actually named and in parenthesis, as in `(s : Setoid α)`. But we want automation, so as to find the *canonical* equivalence relation on `G ⧸ H` under the assumption that `H` is normal, and not having Lean asking us to choose one relation each time.
 +++
 
-Given `s : Setoid α` we can construct `Quotient s`: it is a type whose terms correspond to equivalence classes of `s`, yet I cannot define it because it is a **Lean primitive**.
+Given `s : Setoid α` we can construct `Quotient s`: it is a type whose terms correspond to equivalence classes of `s`, yet **I cannot define it because it is a Lean primitive**.
 
 But the important things are not definitions, **it is the API**:
 * `Quotient.mk s : α → Quotient s` is the quotient map (and `Quotient.mk _ x` is denoted `⟦x⟧`, with `\[[` and `\]]`);
 * `Quotient.out : Quotient s → α` sends `x : Quotient s` to a lift
 of `x`, **using the axiom of choice**;
-* `Quotient.lift` : given `f : α → β` such that `a ≈ b → f a = f b`, the function `Quotient.lift f : Quotient s → β` satisfies `(Quotient.lift f) ∘ Quotient.mk s = f`;
+* `Quotient.lift` : given a term `f : α → β` satisfying `a ≈ b → f a = f b`, the term `Quotient.lift f : Quotient s → β` satisfies `(Quotient.lift f) ∘ Quotient.mk s = f`;
 
 +++ And two more esoteric ones:
 * `Quotient.rep [Encodable α] : Quotient s → α` without using the axiom of choice, provided that `α` is **encodable**, *i. e.* it is endowed with a (chosen) bijection into a subset of `ℕ` (we also need `s.r` to be decidable: for all `a, b`, either `a ≈ b` or `¬ a ≈ b`).

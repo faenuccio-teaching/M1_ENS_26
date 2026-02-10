@@ -35,7 +35,7 @@ structure WrongGroup where
   mul_assoc : ∀ (x y z : carrier), mul (mul x y) z = mul x (mul y z)
   inv_mul_cancel : ∀ (x : carrier), mul (inv x) x = one
 
-lemma WrongGroup.inv_eq_of_mul {α : WrongGroup} (x y : α.carrier) :
+lemma WrongGroup.inv_eq_of_mul {α : WrongGroup} (x y : α) :
     α.mul x y = α.one → α.inv x = y := sorry
 
 structure WrongSemigroup where
@@ -52,7 +52,6 @@ lemma assoc_mul' (G : WrongGroup) (x y z w : G.carrier) :
 
 def Nplus : WrongSemigroup := sorry
 
-example : Nplus.mul (1 : ℕ) (1 : ℕ) = (2 : ℕ) := rfl
 example : Nplus.mul 1 1 = 2 := rfl
 
 -- `⌘`
@@ -98,7 +97,7 @@ example {A : Type*} [AddGroup A] (x y : A) : x + y + 0 = x + y := sorry
 #print One
 #synth One ℤ
 
-example : AddGroup ℤ := inferInstance
+example : AddGroup (ℤ × ℚ) := inferInstance
 
 example {A : Type*} [AddGroup A] {a b : A} (h : a + b = 0) : a + 2 • b = b := sorry
 
@@ -108,6 +107,8 @@ example (G : Type*) [Group G] [CommGroup G] (g : G) : 1 * g = g := by
 
 -- #### The `Coe` class
 #check Complex.exp_add_pi_mul_I (3/2 : ℚ)
+#print RatCast
+#synth RatCast ℂ
 
 instance : Coe WrongGroup Type := sorry
 
@@ -132,22 +133,25 @@ example (H : Subgroup G) : Group H := sorry
 variable (H : Subgroup G) in
 #synth Group H
 
-/- We have an automatic coercion from sets to types, so we get a coercion
-from subgroups to types: -/
+
+/- We have an automatic coercion from sets to types (more about this in the next class),
+so we get a coercion from subgroups to types: -/
 example (H : Subgroup G) (x : H) (hx : x = 1) : (x : G) = 1 := sorry
 
 example (H : Subgroup G) : 1 ∈ H := sorry
 
 /- Observe what happens if one writes
-  AddSubgroup ℤ :=
-  _
-And how can we populate the fields automatically? -/
+
+  `AddSubgroup ℤ :=`
+  `_`
+
+-/
 example : AddSubgroup ℤ := sorry
 
 
-/- Note two things:
-1. What happens if we remove `Comm`
-2. What happens to the *old* `G` and `Group G`
+/- In the example below, note two things:
+1. What happens if we remove `Comm`;
+2. What happens to the `G` and `Group G` that are globally defined in this section;
 -/
 example (G : Type*) [CommGroup G] (H₁ H₂ : Subgroup G) {x y : G} (hx : x ∈ H₁) (hy : y ∈ H₂) :
     x * y ∈ H₁ ⊔ H₂ := sorry
