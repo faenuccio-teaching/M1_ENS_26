@@ -38,9 +38,12 @@ jobs:
           if [[ -n "$(git status --porcelain)" ]]; then
             git config user.name "github-actions"
             git config user.email "github-actions@github.com"
-            git add .
+            git add docbuild
+            echo "Committing the following changes:"
+            git status
             git commit -m "Auto update"
-            git push
+            echo "Pushing changes:"
+            git push -vvv
           else
             echo "No changes to commit, skipping push"
           fi
