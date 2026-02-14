@@ -12,6 +12,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.CategoryTheory.Products.Associator:leanArts", "bf0c77d83dcdc478"]],
- "depHash": "8e03479a670ff5b8"}
+ "depHash": "5b107bef605fb705"}

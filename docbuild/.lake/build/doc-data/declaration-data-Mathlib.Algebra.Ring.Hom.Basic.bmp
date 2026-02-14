@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Mathlib.Algebra.Ring.Hom.InjSurj","Mathlib.Deprecated.RingHom","Mathlib.Tactic.Linter.DeprecatedModule"],"instances":[],"name":"Mathlib.Algebra.Ring.Hom.Basic"}

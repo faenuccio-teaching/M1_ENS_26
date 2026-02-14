@@ -16,6 +16,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.Algebra.Ring.Pointwise.Finset:leanArts", "40b56ca1ffed8274"]],
- "depHash": "a6c337b817676fa2"}
+ "depHash": "70c170030e267287"}

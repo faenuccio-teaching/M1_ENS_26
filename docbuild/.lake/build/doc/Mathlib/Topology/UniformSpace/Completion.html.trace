@@ -12,6 +12,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.Topology.UniformSpace.Completion:leanArts", "cabbf6b53afa8fb8"]],
- "depHash": "7aeeca47c8e93561"}
+ "depHash": "13e1006f9b70ee7c"}

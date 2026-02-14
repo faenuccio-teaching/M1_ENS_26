@@ -8,11 +8,11 @@
    "level": "trace"}],
  "inputs":
  [["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["<nil>", "7b9f5ff346c3f45f"],
   ["<collection>",
    [["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc/M1ENS26/Basic.html",
-     "434ea559149cbba4"],
+     "6ff9e327d82ccf57"],
     ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc/M1ENS26.html",
-     "1fb4e419206c489f"]]]],
- "depHash": "53dc0a9b4f86a5fe"}
+     "6ff722d304ea54fc"]]]],
+ "depHash": "fe0d4f621fad6f82"}

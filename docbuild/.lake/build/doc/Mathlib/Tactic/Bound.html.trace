@@ -20,6 +20,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.Tactic.Bound:leanArts", "a326920ab72fd1f0"]],
- "depHash": "c416cec1aab5d2d1"}
+ "depHash": "7e948d03154d3e04"}

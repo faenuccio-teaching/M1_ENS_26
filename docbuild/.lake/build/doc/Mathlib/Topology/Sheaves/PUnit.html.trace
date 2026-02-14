@@ -12,6 +12,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.Topology.Sheaves.PUnit:leanArts", "42c530b1c59e1e93"]],
- "depHash": "9354ddec99257698"}
+ "depHash": "730676a1f1f8183d"}

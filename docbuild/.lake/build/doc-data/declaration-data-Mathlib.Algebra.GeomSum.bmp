@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Mathlib.Algebra.Group.NatPowAssoc","Mathlib.Algebra.Order.Field.GeomSum","Mathlib.Algebra.Order.Ring.GeomSum","Mathlib.Algebra.Ring.Regular","Mathlib.Tactic.Abel","Mathlib.Tactic.Positivity.Basic"],"instances":[],"name":"Mathlib.Algebra.GeomSum"}

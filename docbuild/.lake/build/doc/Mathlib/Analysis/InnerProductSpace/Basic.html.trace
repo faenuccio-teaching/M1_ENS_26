@@ -16,6 +16,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.Analysis.InnerProductSpace.Basic:leanArts", "8f13d3240c0dc2c3"]],
- "depHash": "56770c80ed8d885b"}
+ "depHash": "c40b7a50de06de56"}
