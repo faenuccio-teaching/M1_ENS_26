@@ -1,6 +1,3 @@
----
-nav_exclude: true
----
 # Sets
 
 ## Introduction
@@ -72,18 +69,20 @@ We take the **first approach**: being a subset is *an implication*
     def (T ⊆ S : Prop) := ∀ a, a ∈ T → a ∈ S
 ```
 
-One can also _upgrade_ sets to types: `T : Set S` for `S : Set α` means `T : Set ↑S = Set (S : Type*)`.
+Yet this does not answer the question "How can I *construct* a subset of a set"? The key is _upgrading_ sets 
+to types: `T : Set S` for `S : Set α` means `T : Set ↑S = Set (S : Type*)`.
 
 ### Some examples:
 1. Double inclusions;
 1. Subsets as sets;
-1. This upgrade (_coercion_) from `Set α` to `Type*`.
+1. This coercion from `Set α` to `Type*`.
 
 `⌘`
 +++
 
 ## Operations on Sets
-+++ **Intersection**
++++ **Intersection & Union**
+#### **Intersection**
 Given sets `S T : Set α`  have the
 ```lean
 def (S ∩ T : Set α) := fun a ↦ a ∈ S ∧ a ∈ T
@@ -92,11 +91,7 @@ def (S ∩ T : Set α) := fun a ↦ a ∈ S ∧ a ∈ T
 * related to _functional extensionality_ : two functions are equal if and only they have if they take the same values on same arguments;
 * not strange: sets *are* functions.
 
-`⌘`
-
-+++
-
-+++ **Union**
+#### **Union**
 Given sets `S T : Set α` we have the
 ```lean
 def (S ∪ T : Set α) := fun a ↦ a ∈ S ∨ a ∈ T
@@ -107,7 +102,9 @@ And if `S : Set α` but `T : Set β`? **ERROR!**
 `⌘`
 +++
 
-+++ **Universal set & Empty set**
++++ **Universal & Empty set, complement and difference**
+
+#### Universal & Empty
 * The first (containing all terms of `α`) is the constant function `True : Prop`
 ```lean
 def (univ : Set α) := fun a ↦ True
@@ -118,11 +115,7 @@ def (∅ : Set α) := fun a ↦ False
 ```
 **Bonus**: There are infinitely many empty sets!
 
-+++
-
-
-
-+++ **Complement and Difference**
+####  **Complement and Difference**
 * The complement is defined by the negation of the defining property, denoted `Sᶜ`.
 ```lean
 Sᶜ = {a : α | ¬a ∈ S}
@@ -143,4 +136,71 @@ def (S \ T : Set α) = fun a ↦ a ∈ S ∧ a ∉ T
 * These symbols can be typed as `\U = ⋃` and `\I = ⋂`.
 
 `⌘`
++++
+
+# Functions
+
+## Introduction
+
+Functions among sets are different gadgets than functions among types.
+
+Let's inspect the following code:
+```lean
+example (α β : Type) (S : Set α) (T : Set β) (f g : S → T) :
+    f = g ↔ ∀ a : α, a ∈ S → f a = g a :=
+```
+It *seems* to say that `f = g` if and only if they coincide on every element of the domain, yet... `⌘`
+
++++ Take-home message
+To apply `f : α → β` to some `s ∈ S : Set α`, *restrict* it to the *subtype* `↑S` attached to `S`.
+
++++
+
+## Some operations on sets and functions
+
++++ (Pre-)image, range, etc...
+
+Given a function `f : α → β` and sets `(S : Set α), (T : Set β)`, there are some constructions that 
+we are going to study:
+
+* The **image** of `S` through `f`, noted `f '' S`.
+This is the *set* `f '' S : Set β` whose defining property is
+```lean
+f '' S := fun b ↦ ∃ x, x ∈ S ∧ f x = b
+```
+Unfortunately it comes with a lot of accents (but we're in France...): and with a space between `f` and `''`: it is not `f'' S`, it is `f '' S`.
+
+* The **range** of `f`, equivalent to `f '' univ`.
+I write *equivalent* because the defining property is
+```lean
+range f := (fun b ↦ ∃ x, f x = b) : β → Prop = (Set β)
+```
+This is not the verbatim definition of `f '' univ` : there will be an exercise about this.
+
+* The **preimage** of `T` through `f`, denoted `f ⁻¹' T`.
+This is the set
+```lean
+f ⁻¹' T : Set α := fun a ↦ f a ∈ T
+```
+This also comes with one accent and _two_ spaces; the symbol `⁻¹` can be typed as `\^-1`.
+
+`⌘`
++++
+
++++ Injective and Surjective functions
+The function `f` is **injective on `S`**, denoted by `InjOn f S` if it is injective (a notion defined for functions **between two types**) when restricted to `S`:
+```lean
+def : InjOn f S := ∀ x₁ ∈ S, ∀ x₂ ∈ S, f x₁ = f x₂ → x₁ = x₂
+```
+
+In particular, the following equivalence is not a tautology:
+```lean
+example : Injective f ↔ InjOn f univ
+```
+rather, it will be an exercise for you.
+
+The obvious definition of *surjectivity* is also available...
+
+`⌘`
+
 +++

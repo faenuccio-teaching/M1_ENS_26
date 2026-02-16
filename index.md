@@ -22,11 +22,11 @@ Les cours ont lieu le mardi de 15h à 18h et le jeudi de 13h30 à 16h30 en Salle
 | Date      | Cours         | Fichiers annexes | Notes
 |-----------|---------------|---------------|---------------
 | 3 février | Tactiques et Types | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_lecture.pdf).| Les [solutions](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_solutions.lean).
-| 5 février | Types (2) | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes.lean) et [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_lecture.md)|
-| 10 février | Algèbre | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures.lean) et [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures_lecture.md)|
-| 17 février | Topologie | |
-| 19 février | Analyse | |
-| 10 mars | *à décider* | |
+| 5 février | Types inductifs et structures | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes.lean) et [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_lecture.md)|
+| 10 février | Algèbre 1: Classes, groupes et sous-groupes | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures.lean) et [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures_lecture.md)|
+| 17 février | Algèbre 2: Groupes quotients et Anneaux | |
+| 19 février | Ensembles | |
+| 10 mars | Topologie et Analyse | |
 | 12 mars | **examen** | | Examen écrit de 2h
 | 31 mars | séminaire étudiants | |
 | 7 avril | séminaire étudiants | |
