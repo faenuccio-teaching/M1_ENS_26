@@ -1,12 +1,22 @@
 {
-  "name": "Lean 4",
+  "name": "Lean 4 + mathlib (No AI, Prebuilt)",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "postCreateCommand": "curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y && echo 'source $HOME/.elan/env' >> ~/.bashrc && ~/.elan/bin/lake build",
+
+  "postCreateCommand": "curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y && ~/.elan/bin/lake exe cache get",
+
   "customizations": {
     "vscode": {
       "extensions": [
         "leanprover.lean4"
-      ]
+      ],
+      "settings": {
+        "github.copilot.enable": false,
+        "github.copilot.inlineSuggest.enable": false,
+        "editor.inlineSuggest.enabled": false,
+        "extensions.ignoreRecommendations": true,
+        "extensions.autoUpdate": false,
+        "extensions.autoCheckUpdates": false
+      }
     }
   }
 }

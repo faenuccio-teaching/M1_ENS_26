@@ -1,0 +1,12 @@
+{
+  "name": "Lean 4",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "postCreateCommand": "curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y && echo 'source $HOME/.elan/env' >> ~/.bashrc && ~/.elan/bin/lake build",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "leanprover.lean4"
+      ]
+    }
+  }
+}
