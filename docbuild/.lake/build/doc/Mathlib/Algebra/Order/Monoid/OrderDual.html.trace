@@ -16,6 +16,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.Algebra.Order.Monoid.OrderDual:leanArts", "44e5ac914cf2d4ed"]],
- "depHash": "26a7a100ae51c550"}
+ "depHash": "674e4c9b7748658d"}

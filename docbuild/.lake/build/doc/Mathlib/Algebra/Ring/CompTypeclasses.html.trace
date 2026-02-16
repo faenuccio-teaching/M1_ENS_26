@@ -12,6 +12,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.Algebra.Ring.CompTypeclasses:leanArts", "d71a4afdb8ac69cc"]],
- "depHash": "26db4df883f478e2"}
+ "depHash": "9dc184fe85a3b41f"}

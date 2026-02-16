@@ -12,6 +12,6 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.AlgebraicGeometry.QuasiAffine:leanArts", "fded92e3c88fc602"]],
- "depHash": "15fcbc5f24441367"}
+ "depHash": "809e27ddd75e8a0a"}

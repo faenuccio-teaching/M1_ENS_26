@@ -16,7 +16,7 @@
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/docbuild/.lake/build/doc-data/references.json",
    "a50f2257f35adb49"],
   ["/home/runner/work/M1_ENS_26/M1_ENS_26/.lake/packages/doc-gen4/.lake/build/bin/doc-gen4",
-   "aecbeac3e0b55b70"],
+   "2dfc233c0620f1d9"],
   ["Mathlib.CategoryTheory.Comma.Presheaf.Colimit:leanArts",
    "60a8c081bb609229"]],
- "depHash": "a06298b9039a04dd"}
+ "depHash": "bb3c924ec9b28cb0"}

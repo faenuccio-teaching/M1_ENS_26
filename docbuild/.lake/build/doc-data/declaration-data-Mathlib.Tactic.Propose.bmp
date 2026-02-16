@@ -1,0 +1,1 @@
+{"declarations":[],"imports":["Init","Lean.Meta.Tactic.TryThis","Lean.Meta.Tactic.SolveByElim","Mathlib.Lean.Expr.Basic","Mathlib.Lean.Meta","Mathlib.Lean.Meta.Basic","Batteries.Util.Cache","Mathlib.Tactic.Core","Mathlib.Tactic.Linter.DeprecatedModule"],"instances":[],"name":"Mathlib.Tactic.Propose"}
