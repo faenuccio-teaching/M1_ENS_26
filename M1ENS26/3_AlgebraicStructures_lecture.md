@@ -82,13 +82,13 @@ but we used it for a group: Lean understood that every group is a semigroup.
 +++
 Most of the above points are related to *classes* and *class type inference*.
 
-Classes are special structures, for which certain terms are stored in a database. They enable `class type inference`, constructing a term of a certain class given a term of a "parent" one.
+Classes are special structures, for which certain terms are stored in a database. They enable **class type inference**, constructing a term of a certain class given a term of a "parent" one.
 
-The idea is that each `class` type cointains a *preferred* or a *canonical* term, declared using the keyword `instance` rather than `def`; and that this terms has been registered in the database to be accessible whenever needed.
+The idea is that each `class` type cointains a *preferred* or a *canonical* term, declared using the keyword `instance` rather than `def`; and that has been registered in the database to be accessible whenever needed.
 ```quote
-Warning: Classes can have parameters, so if `G` and `H` are types, `Group G` and `Group H` are different types!
+Warning: often, Classes have parameters, so if `G` and `H` are types, `Group G` and `Group H` are different types!
 ```
-To introduce a class assumption in a lemma, in a definition, or in a new class, we use `[` and `]` and typically *we don't name it*: because this should be useless.
+To introduce a class assumption in a lemma (*i. e.* to add a term to the local context), in a definition, or in a new class, we use `[` and `]` and typically *we don't name it*: because this should be useless.
 
 To check what is the canonical term of a certain class type, use the command `#synth`, and to recall it use `inferInstance` (in term mode) or `infer_instance` (in tactic mode).
 
@@ -128,7 +128,7 @@ Finally, the type `Subgroup G` is ordered, and `{1} : Subgroup G` is actually `�
 `⌘`
 
 #### Homomorphisms
-Given *monoids* `M` and `N`, a *monoid* homomorphism is a function `f : M → N` that respects the operation and the unity. There could be (at least) two ways to define this: 
+Given *monoids* `M` and `N`, a *monoid* homomorphism is a function `f : M → N` that respects the operations and the units. There could be (at least) two ways to define this: 
 
 1. Declare the property `MonHom : (M → N) → Prop` as
 
@@ -146,7 +146,7 @@ This would mean that a monoid homomorphism is a pair `⟨f, hf : MonHom f⟩`.
         | map_mul : ∀ a b, toFun (a * b) = (toFun a) * (toFun b)
         | map_one : toFun 1 = 1
 
-so that terms of `MonoidHom M N` would be *triples* ⟨f, map_mul f, map_one f⟩`.
+so that terms of `MonoidHom M N` would be *triples* `⟨f, map_mul f, map_one f⟩`.
 
 These approaches are not *very* different, the problem with the first is that to access the proofs one has to destructure `hf` to `hf.1` and `hf.2`. Imagine if there were 20 properties...
 
@@ -154,7 +154,7 @@ These approaches are not *very* different, the problem with the first is that to
 * A **group homomorphism** is just a monoid homomorphism: the property `f (x⁻¹) = (f x)⁻¹` can be proven. But this relies on class type inference...
   
   +++ Why does it rely on class type inference?
-  Because if we only define monoid homomorphisms, when `G` and `H` are group and we write `f : G →* H` Lean would complain that `G` and `H` are not groups. But it understands that they are *also* monoids.
+  Because if we only define monoid homomorphisms, then when `G` and `H` are groups and we write `f : G →* H` Lean would complain that `G` and `H` are not monoids. By class type inference, it understands that they are *also* monoids.
   +++
 
 * **Take-home message**: homomorphisms between algebraic structures are structures on their own, "bundling" together the underline function and all its properties.
