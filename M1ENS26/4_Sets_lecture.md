@@ -41,8 +41,6 @@ so `(Set α) = (α → Prop)`.
 * the `a ∈ S` symbol means that the value of `S` is `True` when evaluated  at the element `a`;
 * So, the positive integers are a *function*!
 
-    `⌘`
-
 Yet, given a function `P : α → Prop` we prefer to write `setOf P : Set α` to denote the set, rather then `P : Set α`, to avoid _abusing definitional equality_.
 
 ### Some examples:
@@ -131,7 +129,7 @@ def (S \ T : Set α) = fun a ↦ a ∈ S ∧ a ∉ T
 +++
 
 +++ **Indexed Intersections & Indexed Unions**
-* Can allow for fancier indexing sets (that will actually be *types*, *ça va sans dire*): given an index type `I` and a collection `A : I → Set α`, the union `(⋃ i, A i) : Set α` consists of the union of all the sets `A i` for `i : I`.
+* One can allow for fancier indexing sets (that will actually be *types*, *ça va sans dire*): given an index type `I` and a collection `A : I → Set α`, the union `(⋃ i, A i) : Set α` consists of the union of all the sets `A i` for `i : I`.
 * Similarly, `(⋂ i, A i) : Set α` is the intersection of all the sets `A i` for `i : I`.
 * These symbols can be typed as `\U = ⋃` and `\I = ⋂`.
 
@@ -142,7 +140,7 @@ def (S \ T : Set α) = fun a ↦ a ∈ S ∧ a ∉ T
 
 ## Introduction
 
-Functions among sets are different gadgets than functions among types.
+#### Functions among sets are different gadgets than functions among types.
 
 Let's inspect the following code:
 ```lean
@@ -160,8 +158,7 @@ To apply `f : α → β` to some `s ∈ S : Set α`, *restrict* it to the *subty
 
 +++ (Pre-)image, range, etc...
 
-Given a function `f : α → β` and sets `(S : Set α), (T : Set β)`, there are some constructions that 
-we are going to study:
+Given a function `f : α → β` and sets `(S : Set α), (T : Set β)`, we have:
 
 * The **image** of `S` through `f`, noted `f '' S`.
 This is the *set* `f '' S : Set β` whose defining property is
@@ -175,7 +172,7 @@ I write *equivalent* because the defining property is
 ```lean
 range f := (fun b ↦ ∃ x, f x = b) : β → Prop = (Set β)
 ```
-This is not the verbatim definition of `f '' univ` : there will be an exercise about this.
+This is not the verbatim definition of `f '' univ` : there is an exercise about this.
 
 * The **preimage** of `T` through `f`, denoted `f ⁻¹' T`.
 This is the set
@@ -197,7 +194,7 @@ In particular, the following equivalence is not a tautology:
 ```lean
 example : Injective f ↔ InjOn f univ
 ```
-rather, it will be an exercise for you.
+rather, it is an exercise for you.
 
 The obvious definition of *surjectivity* is also available...
 
