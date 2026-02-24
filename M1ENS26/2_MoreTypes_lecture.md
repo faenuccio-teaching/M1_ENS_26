@@ -63,7 +63,7 @@ More generally, given a type `A` (where `A = Sort u` is allowed), seen as an ind
 ∀ (a : A), I a
 (a : A) → I a
 ```
-is the type whose terms are collections `(a, xₐ)` for `a` spanning `A` and where `xₐ : I a`. These are written `λ a : A ↦ xₐ`, or `fun a : A ↦ xₐ`.
+is the type whose terms are functions assigning to each `a : A` a term `xₐ : I a`. When `A` is non-empty, they are collections `(a, xₐ)` for `a` spanning all terms of type `A` and where `xₐ : I a`. Its  terms are written `λ a : A ↦ xₐ`, or `fun a : A ↦ xₐ`.
 
 * If you've got a geometric intuition, this looks very much like a fibration, where `A` is the base and `I a` is the fiber above `a : A`.
 
