@@ -88,9 +88,6 @@ def subsub' {α : Type} {S : Set α} (P : α → Prop) : Set (S : Type) := by
 -- Why does this *fail*? How to fix it?
 example (α : Type) (S : Set α) (P : S → Prop) (x : ↑S) (hx : x ∈ subsub P) : x ∈ S := sorry
 
-
--- **More about this "injection"  `Set α ↪ Type`?**
-
 -- Why does this *fail*? How to fix it?
 example : ∀ n : PositiveIntegers, 0 ≤ n := sorry
 

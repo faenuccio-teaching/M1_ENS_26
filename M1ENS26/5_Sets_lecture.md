@@ -7,9 +7,7 @@ Sets are **primitive** objects when doing classical, pen-and-paper mathematics:
 
 That's all you need: do you ever look at $f\colon S \to T$ as $f\subseteq S\times T$?
 
-Objects normally represented by a set are formalised in Lean as *types* with some extra-structure.
-
-So, for Lean, sets are **no longer primitive objects**; yet
+We've seen that, for Lean, the **primitive objects** are types; yet
 * sometimes we still want to speak about *sets* as collections of elements
 * we want then to play the usual games.
 
@@ -47,7 +45,7 @@ Yet, given a function `P : α → Prop` we prefer to write `setOf P : Set α` to
 1. How to prove that something belongs to a set?
 1. Positive naturals;
 1. Even numbers;
-1. An abstract set of `α` given by some `P`.
+1. An abstract set of `α` given by some `P : Prop`.
 
 `⌘`
 +++
@@ -64,6 +62,7 @@ Now,
 
 We take the **first approach**: being a subset is *an implication*
 ```lean
+    variable {T S : Set α} 
     def (T ⊆ S : Prop) := ∀ a, a ∈ T → a ∈ S
 ```
 
@@ -129,7 +128,7 @@ def (S \ T : Set α) = fun a ↦ a ∈ S ∧ a ∉ T
 +++
 
 +++ **Indexed Intersections & Indexed Unions**
-* One can allow for fancier indexing sets (that will actually be *types*, *ça va sans dire*): given an index type `I` and a collection `A : I → Set α`, the union `(⋃ i, A i) : Set α` consists of the union of all the sets `A i` for `i : I`.
+* One can allow for fancier indexing sets (that will actually be **types**, *ça va sans dire*): given an index type `I` and a collection `A : I → Set α`, the union `(⋃ i, A i) : Set α` consists of the union of all the sets `A i` for `i : I`.
 * Similarly, `(⋂ i, A i) : Set α` is the intersection of all the sets `A i` for `i : I`.
 * These symbols can be typed as `\U = ⋃` and `\I = ⋂`.
 
