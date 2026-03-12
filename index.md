@@ -21,16 +21,16 @@ Les cours ont lieu le mardi de 15h à 18h et le jeudi de 13h30 à 16h30 en Salle
 
 | Date      | Cours         | Fichiers annexes | Notes
 |-----------|---------------|---------------|---------------
-| 3 février | Tactiques et Types | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_lecture.pdf).| Les [solutions](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_solutions.lean).
-| 5 février | Types inductifs et structures | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_lecture.pdf)| Les [solutions](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_solutions.lean).
-| 10 février | Algèbre 1: Classes, groupes et sous-groupes | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures_lecture.pdf)| Les [solutions](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures_solutions.lean).
+| 3 février | Tactiques et Types | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/1_Tactics%26Types_lecture.pdf).| 
+| 5 février | Types inductifs et structures | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/2_MoreTypes_lecture.pdf)| 
+| 10 février | Algèbre 1: Classes, groupes et sous-groupes | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/3_AlgebraicStructures_lecture.pdf)|
 | 17 février | Algèbre 2: Sousgroupes et Mathlib | Fichiers du Cours 3|
 | 19 février | Algèbre 3: Groupes quotients et Anneaux | Fichiers du Cours 3|
-| 10 mars | Ensembles | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/5_Sets.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/5_Sets_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/5_Sets_lecture.pdf) | Les [solutions](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/5_Sets_solutions.lean).
+| 10 mars | Ensembles | Fichiers [Lean](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/5_Sets.lean), [MarkDown](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/5_Sets_lecture.md) et [PDF](https://github.com/faenuccio-teaching/M1_ENS_26/blob/master/M1ENS26/5_Sets_lecture.pdf) |
 | 12 mars | **examen** | | Examen écrit de 2h
 | 31 mars | séminaires étudiants | • Paul Landrier (mouvement Brownien) <br> • Aimeric Duchemin (Graph Theory or Commutative Algebra)|  
 | 7 avril | séminaires étudiants | • Alexis de Tarlé (Category Theory or Fields & Galois Theory <br> • Leila Abubakarova (Algebraic Geometry) <br> • Bojin Han (Algebraic Geometry)|
-| 14 avril | séminaires étudiants | • Yann Didier (???) <br> • Romane Pagès (Algèbre)|
+| 15 avril | séminaires étudiants | • Yann Didier (???) <br> • Romane Pagès (Algèbre)| **C'est un mercredi**
 
 
 # Références 
