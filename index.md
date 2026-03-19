@@ -31,7 +31,7 @@ Les cours ont lieu le mardi de 15h à 18h et le jeudi de 13h30 à 16h30 en Salle
 | 31 mars | séminaires étudiants | • Paul Landrier (mouvement Brownien) <br> • Aimeric Duchemin (Graph Theory or Commutative Algebra)|  
 | 7 avril | séminaires étudiants | • Alexis de Tarlé (Category Theory or Fields & Galois Theory <br> • Leila Abubakarova (Algebraic Geometry) <br> • Bojin Han (Algebraic Geometry)|
 | 15 avril | séminaires étudiants | • Yann Didier (???) <br> • Romane Pagès (Algèbre)| **C'est un mercredi**
-| 17 avril | séminaires étudiants | • Alan Lemarié (???) | **C'est un vendredi**
+| 17 avril | séminaires étudiants | • Alan Lemarié (Orders, Cardinals, Ordinals) | **C'est un vendredi**
 
 
 # Références 
