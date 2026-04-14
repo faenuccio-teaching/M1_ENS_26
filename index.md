@@ -31,8 +31,7 @@ Les cours ont lieu le mardi de 15h à 18h et le jeudi de 13h30 à 16h30 en Salle
 | 31 mars | séminaires étudiants | • 15h - Paul Landrier (Brownian motion)|  salle R3
 | 7 avril | séminaires étudiants | • 13h30 -- Leila Abubakarova (Algebraic Geometry) <br> • 15h00 Bojin Han (Algebraic Geometry)| salle Bourbaki
 | **mercredi**<br> 15 avril | séminaires étudiants | • 14h - Yann Didier (Model Theory) <br> • 15h30 - Romane Pagès (Algebra)| salle R3
-| **vendredi**<br>
-  17 avril | séminaires étudiants | • 13h30 - Aimeric Duchemin (Graph Theory) | salle R3
+| **vendredi**<br> 17 avril | séminaires étudiants | • 13h30 - Aimeric Duchemin (Graph Theory) | online
 
 
 # Références 
